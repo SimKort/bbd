@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* Pagrindinė juosta */
+.toolbar {
+    font-family: 'Poppins', sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #618B25;
+    color: white;
+    padding: 10px 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    .toolbar-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .logo {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+    .language-selector {
+        position: relative;
+        margin-right: 40px;
+        button {
+            background: none;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .dropdown {
+            position: absolute;
+            top: 120%;
+            right: 0;
+            background: white;
+            color: black;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            min-width: 100px;
+            display: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            z-index: 1001;
+            div {
+                padding: 8px 12px;
+                cursor: pointer;
+                &:hover {
+                    background: #eee;
+                }
+            }
+            &.show {
+                display: block;
+            }
+        }
+    }
+}
+/*--------------------------------------------------------*/
+
+/* Responsive dizainui */
+@media (max-width: 768px) {
+    .toolbar {
+        padding: 10px;
+    }
+    .toolbar .toolbar-content {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .toolbar .logo {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+    .language-selector {
+        margin-right: 0;
+    }
+    .language-selector button {
+        font-size: 14px;
+    }
+}
+/*--------------------------------------------------------*/
