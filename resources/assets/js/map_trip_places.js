@@ -33,17 +33,23 @@ const placeTypeIcons = {
 };
 
 // Galutinio kelionės plano sąrašo sukūrimo funkcija
-export function renderTripPlan() {
+export function renderTripPlan(sortedWaypoints = addedWaypoints) {
     const t = translations[currentLanguage];
     const list = document.getElementById("trip-plan-list");
     const title = document.getElementById("trip-plan-title");
     const section = document.getElementById("trip-plan-section");
-    if (!list || !section) return;
-    section.style.display = addedWaypoints.length === 0 ? "none" : "block";
-    if (title) title.textContent = t.tripPlanTitle;
+    if (!list || !section){
+        return;
+    }
+    section.style.display = sortedWaypoints.length === 0 ? "none" : "block";
+    if (title){
+        title.textContent = t.tripPlanTitle;
+    }
     list.innerHTML = "";
     list.appendChild(renderTripPoint(currentStartName || currentStart, currentStart, "🏁", t.startPoint, "start-point"));
-    addedWaypoints.forEach((place, i) => list.appendChild(renderTripItem(place, i)));
+    sortedWaypoints.forEach((place, i) => {
+        list.appendChild(renderTripItem(place, i));
+    });
     list.appendChild(renderTripPoint(currentEndName || currentEnd, currentEnd, "🎯", t.endPoint, "end-point"));
 }
 window.renderTripPlan = renderTripPlan;

@@ -1,0 +1,841 @@
+[ {
+    "country" : "libya",
+    "gasoline price" : 0.027,
+    "diesel price" : 0.027,
+    "code" : "LY"
+}, {
+    "country" : "iran",
+    "gasoline price" : 0.029,
+    "diesel price" : 0.006,
+    "code" : "IR"
+}, {
+    "country" : "venezuela",
+    "gasoline price" : 0.035,
+    "diesel price" : 0.004,
+    "code" : "VE"
+}, {
+    "country" : "angola",
+    "gasoline price" : 0.327,
+    "diesel price" : 0.327,
+    "code" : "AO"
+}, {
+    "country" : "turkmenistan",
+    "gasoline price" : 0.429,
+    "diesel price" : 0.286,
+    "code" : "TM"
+}, {
+    "country" : "kazakhstan",
+    "gasoline price" : 0.474,
+    "diesel price" : 0.562,
+    "code" : "KZ"
+}, {
+    "country" : "nigeria",
+    "gasoline price" : 0.54,
+    "diesel price" : 0.621,
+    "code" : "NG"
+}, {
+    "country" : "azerbaijan",
+    "gasoline price" : 0.647,
+    "diesel price" : 0.588,
+    "code" : "AZ"
+}, {
+    "country" : "sudan",
+    "gasoline price" : 0.7,
+    "diesel price" : 0.656,
+    "code" : "SD"
+}, {
+    "country" : "bhutan",
+    "gasoline price" : 0.767,
+    "diesel price" : 0.82,
+    "code" : "BT"
+}, {
+    "country" : "kyrgyzstan",
+    "gasoline price" : 0.838,
+    "diesel price" : 0.834,
+    "code" : "KG"
+}, {
+    "country" : "tunisia",
+    "gasoline price" : 0.839,
+    "diesel price" : 0.733,
+    "code" : "TN"
+}, {
+    "country" : "ethiopia",
+    "gasoline price" : 0.867,
+    "diesel price" : 0.831,
+    "code" : "ET"
+}, {
+    "country" : "afghanistan",
+    "gasoline price" : 0.868,
+    "diesel price" : 0.798,
+    "code" : "AF"
+}, {
+    "country" : "liberia",
+    "gasoline price" : 0.87,
+    "diesel price" : 0.936,
+    "code" : "LR"
+}, {
+    "country" : "maldives",
+    "gasoline price" : 0.877,
+    "diesel price" : 0.904,
+    "code" : "MV"
+}, {
+    "country" : "syria",
+    "gasoline price" : 0.879,
+    "diesel price" : 0.679,
+    "code" : "SY"
+}, {
+    "country" : "uzbekistan",
+    "gasoline price" : 0.981,
+    "diesel price" : 0.941,
+    "code" : "UZ"
+}, {
+    "country" : "gabon",
+    "gasoline price" : 1.029,
+    "diesel price" : 0.994,
+    "code" : "GA"
+}, {
+    "country" : "bangladesh",
+    "gasoline price" : 1.038,
+    "diesel price" : 0.865,
+    "code" : "BD"
+}, {
+    "country" : "dr congo",
+    "gasoline price" : 1.04,
+    "diesel price" : 1.037,
+    "code" : "CD"
+}, {
+    "country" : "botswana",
+    "gasoline price" : 1.058,
+    "diesel price" : 1.072,
+    "code" : "BW"
+}, {
+    "country" : "swaziland",
+    "gasoline price" : 1.069,
+    "diesel price" : 1.11,
+    "code" : "SZ"
+}, {
+    "country" : "haiti",
+    "gasoline price" : 1.131,
+    "diesel price" : 1.252,
+    "code" : "HT"
+}, {
+    "country" : "trinidad  tobago",
+    "gasoline price" : 1.141,
+    "diesel price" : 0.649,
+    "code" : "TT"
+}, {
+    "country" : "togo",
+    "gasoline price" : 1.176,
+    "diesel price" : 1.202,
+    "code" : "TG"
+}, {
+    "country" : "cuba",
+    "gasoline price" : 1.295,
+    "diesel price" : 1.096,
+    "code" : "CU"
+}, {
+    "country" : "dominica",
+    "gasoline price" : 1.328,
+    "diesel price" : 1.21,
+    "code" : "DM"
+}, {
+    "country" : "armenia",
+    "gasoline price" : 1.332,
+    "diesel price" : 1.307,
+    "code" : "AM"
+}, {
+    "country" : "mali",
+    "gasoline price" : 1.34,
+    "diesel price" : 1.253,
+    "code" : "ML"
+}, {
+    "country" : "burundi",
+    "gasoline price" : 1.346,
+    "diesel price" : 1.321,
+    "code" : "BI"
+}, {
+    "country" : "uganda",
+    "gasoline price" : 1.372,
+    "diesel price" : 1.358,
+    "code" : "UG"
+}, {
+    "country" : "guinea",
+    "gasoline price" : 1.387,
+    "diesel price" : 1.387,
+    "code" : "GN"
+}, {
+    "country" : "seychelles",
+    "gasoline price" : 1.398,
+    "diesel price" : 1.401,
+    "code" : "SC"
+}, {
+    "country" : "morocco",
+    "gasoline price" : 1.405,
+    "diesel price" : 1.181,
+    "code" : "MA"
+}, {
+    "country" : "mongolia",
+    "gasoline price" : 1.41,
+    "diesel price" : 1.193,
+    "code" : "MN"
+}, {
+    "country" : "bahamas",
+    "gasoline price" : 1.433,
+    "diesel price" : 1.299,
+    "code" : "BS"
+}, {
+    "country" : "senegal",
+    "gasoline price" : 1.712,
+    "diesel price" : 1.305,
+    "code" : "SN"
+}, {
+    "country" : "belize",
+    "gasoline price" : 1.752,
+    "diesel price" : 1.547,
+    "code" : "BZ"
+}, {
+    "country" : "san marino",
+    "gasoline price" : 1.785,
+    "diesel price" : 1.665,
+    "code" : "SM"
+}, {
+    "country" : "monaco",
+    "gasoline price" : 1.869,
+    "diesel price" : 1.778,
+    "code" : "MC"
+}, {
+    "country" : "c afr rep",
+    "gasoline price" : 1.902,
+    "diesel price" : 2.334,
+    "code" : "CF"
+}, {
+    "country" : "albania",
+    "gasoline price" : 1.974,
+    "diesel price" : 1.974,
+    "code" : "AL"
+}, {
+    "country" : "kuwait",
+    "gasoline price" : 0.2958,
+    "diesel price" : 0.3306,
+    "code" : "KW"
+}, {
+    "country" : "algeria",
+    "gasoline price" : 0.3045,
+    "diesel price" : 0.1914,
+    "code" : "DZ"
+}, {
+    "country" : "egypt",
+    "gasoline price" : 0.3219,
+    "diesel price" : 0.261,
+    "code" : "EG"
+}, {
+    "country" : "malaysia",
+    "gasoline price" : 0.4089,
+    "diesel price" : 0.5916,
+    "code" : "MY"
+}, {
+    "country" : "bahrain",
+    "gasoline price" : 0.4611,
+    "diesel price" : 0.41759999999999997,
+    "code" : "BH"
+}, {
+    "country" : "bolivia",
+    "gasoline price" : 0.46980000000000005,
+    "diesel price" : 0.46980000000000005,
+    "code" : "BO"
+}, {
+    "country" : "qatar",
+    "gasoline price" : 0.4872,
+    "diesel price" : 0.4872,
+    "code" : "QA"
+}, {
+    "country" : "saudi arabia",
+    "gasoline price" : 0.5394,
+    "diesel price" : 0.3828,
+    "code" : "SA"
+}, {
+    "country" : "oman",
+    "gasoline price" : 0.5394,
+    "diesel price" : 0.5829000000000001,
+    "code" : "OM"
+}, {
+    "country" : "ecuador",
+    "gasoline price" : 0.5742,
+    "diesel price" : 0.41759999999999997,
+    "code" : "EC"
+}, {
+    "country" : "uae",
+    "gasoline price" : 0.5829000000000001,
+    "diesel price" : 0.6264,
+    "code" : "AE"
+}, {
+    "country" : "lebanon",
+    "gasoline price" : 0.6264,
+    "diesel price" : 0.5655,
+    "code" : "LB"
+}, {
+    "country" : "russia",
+    "gasoline price" : 0.6351,
+    "diesel price" : 0.7308,
+    "code" : "RU"
+}, {
+    "country" : "vietnam",
+    "gasoline price" : 0.6612,
+    "diesel price" : 0.5829000000000001,
+    "code" : "VN"
+}, {
+    "country" : "belarus",
+    "gasoline price" : 0.6786,
+    "diesel price" : 0.6786,
+    "code" : "BY"
+}, {
+    "country" : "paraguay",
+    "gasoline price" : 0.7221,
+    "diesel price" : 0.783,
+    "code" : "PY"
+}, {
+    "country" : "puerto rico",
+    "gasoline price" : 0.7743,
+    "diesel price" : 0.6873,
+    "code" : "PR"
+}, {
+    "country" : "guyana",
+    "gasoline price" : 0.7743,
+    "diesel price" : 0.8265,
+    "code" : "GY"
+}, {
+    "country" : "taiwan",
+    "gasoline price" : 0.7917000000000001,
+    "diesel price" : 0.7133999999999999,
+    "code" : "TW"
+}, {
+    "country" : "pakistan",
+    "gasoline price" : 0.7917000000000001,
+    "diesel price" : 0.8004,
+    "code" : "PK"
+}, {
+    "country" : "usa",
+    "gasoline price" : 0.8091,
+    "diesel price" : 0.8265,
+    "code" : "US"
+}, {
+    "country" : "panama",
+    "gasoline price" : 0.8351999999999999,
+    "diesel price" : 0.7133999999999999,
+    "code" : "PA"
+}, {
+    "country" : "colombia",
+    "gasoline price" : 0.8439,
+    "diesel price" : 0.5655,
+    "code" : "CO"
+}, {
+    "country" : "burma",
+    "gasoline price" : 0.8613,
+    "diesel price" : 0.7221,
+    "code" : "MM"
+}, {
+    "country" : "el salvador",
+    "gasoline price" : 0.87,
+    "diesel price" : 0.7482,
+    "code" : "SV"
+}, {
+    "country" : "lesotho",
+    "gasoline price" : 0.8787,
+    "diesel price" : 0.9135,
+    "code" : "LS"
+}, {
+    "country" : "ghana",
+    "gasoline price" : 0.8961,
+    "diesel price" : 0.87,
+    "code" : "GH"
+}, {
+    "country" : "honduras",
+    "gasoline price" : 0.8961,
+    "diesel price" : 0.7394999999999999,
+    "code" : "HN"
+}, {
+    "country" : "australia",
+    "gasoline price" : 0.9222,
+    "diesel price" : 0.9483,
+    "code" : "AU"
+}, {
+    "country" : "brazil",
+    "gasoline price" : 0.9309000000000001,
+    "diesel price" : 0.9222,
+    "code" : "BR"
+}, {
+    "country" : "namibia",
+    "gasoline price" : 0.9309000000000001,
+    "diesel price" : 0.9309000000000001,
+    "code" : "NA"
+}, {
+    "country" : "cambodia",
+    "gasoline price" : 0.9570000000000001,
+    "diesel price" : 0.7917000000000001,
+    "code" : "KH"
+}, {
+    "country" : "china",
+    "gasoline price" : 0.9570000000000001,
+    "diesel price" : 0.8526,
+    "code" : "CN"
+}, {
+    "country" : "guatemala",
+    "gasoline price" : 0.9657000000000001,
+    "diesel price" : 0.8178,
+    "code" : "GT"
+}, {
+    "country" : "georgia",
+    "gasoline price" : 0.9657000000000001,
+    "diesel price" : 0.9396000000000001,
+    "code" : "GE"
+}, {
+    "country" : "south africa",
+    "gasoline price" : 0.9744,
+    "diesel price" : 1.0005,
+    "code" : "ZA"
+}, {
+    "country" : "canada",
+    "gasoline price" : 0.9830999999999999,
+    "diesel price" : 0.9135,
+    "code" : "CA"
+}, {
+    "country" : "rwanda",
+    "gasoline price" : 0.9830999999999999,
+    "diesel price" : 0.9917999999999999,
+    "code" : "RW"
+}, {
+    "country" : "tanzania",
+    "gasoline price" : 0.9830999999999999,
+    "diesel price" : 0.9570000000000001,
+    "code" : "TZ"
+}, {
+    "country" : "philippines",
+    "gasoline price" : 0.9917999999999999,
+    "diesel price" : 0.8091,
+    "code" : "PH"
+}, {
+    "country" : "turkey",
+    "gasoline price" : 1.0091999999999999,
+    "diesel price" : 1.0179,
+    "code" : "TR"
+}, {
+    "country" : "nepal",
+    "gasoline price" : 1.0091999999999999,
+    "diesel price" : 0.9222,
+    "code" : "NP"
+}, {
+    "country" : "curacao",
+    "gasoline price" : 1.0179,
+    "diesel price" : 0.8091,
+    "code" : "CW"
+}, {
+    "country" : "argentina",
+    "gasoline price" : 1.0179,
+    "diesel price" : 1.1049,
+    "code" : "AR"
+}, {
+    "country" : "india",
+    "gasoline price" : 1.0179,
+    "diesel price" : 0.9135,
+    "code" : "IN"
+}, {
+    "country" : "madagascar",
+    "gasoline price" : 1.0266,
+    "diesel price" : 0.9570000000000001,
+    "code" : "MG"
+}, {
+    "country" : "grenada",
+    "gasoline price" : 1.0266,
+    "diesel price" : 1.0091999999999999,
+    "code" : "GD"
+}, {
+    "country" : "peru",
+    "gasoline price" : 1.0352999999999999,
+    "diesel price" : 0.8265,
+    "code" : "PE"
+}, {
+    "country" : "jamaica",
+    "gasoline price" : 1.0352999999999999,
+    "diesel price" : 1.0179,
+    "code" : "JM"
+}, {
+    "country" : "fiji",
+    "gasoline price" : 1.044,
+    "diesel price" : 0.8961,
+    "code" : "FJ"
+}, {
+    "country" : "suriname",
+    "gasoline price" : 1.044,
+    "diesel price" : 1.0352999999999999,
+    "code" : "SR"
+}, {
+    "country" : "benin",
+    "gasoline price" : 1.044,
+    "diesel price" : 1.0875,
+    "code" : "BJ"
+}, {
+    "country" : "sri lanka",
+    "gasoline price" : 1.0527,
+    "diesel price" : 0.9657000000000001,
+    "code" : "LK"
+}, {
+    "country" : "zambia",
+    "gasoline price" : 1.0788,
+    "diesel price" : 0.9309000000000001,
+    "code" : "ZM"
+}, {
+    "country" : "dom rep",
+    "gasoline price" : 1.0788,
+    "diesel price" : 0.8265,
+    "code" : "DO"
+}, {
+    "country" : "south korea",
+    "gasoline price" : 1.0962,
+    "diesel price" : 1.0091999999999999,
+    "code" : "KR"
+}, {
+    "country" : "mexico",
+    "gasoline price" : 1.0962,
+    "diesel price" : 1.1136,
+    "code" : "MX"
+}, {
+    "country" : "thailand",
+    "gasoline price" : 1.1136,
+    "diesel price" : 0.8265,
+    "code" : "TH"
+}, {
+    "country" : "moldova",
+    "gasoline price" : 1.1223,
+    "diesel price" : 0.9309000000000001,
+    "code" : "MD"
+}, {
+    "country" : "japan",
+    "gasoline price" : 1.1397,
+    "diesel price" : 1.0091999999999999,
+    "code" : "JP"
+}, {
+    "country" : "chile",
+    "gasoline price" : 1.1397,
+    "diesel price" : 0.87,
+    "code" : "CL"
+}, {
+    "country" : "costa rica",
+    "gasoline price" : 1.1397,
+    "diesel price" : 0.9657000000000001,
+    "code" : "CR"
+}, {
+    "country" : "laos",
+    "gasoline price" : 1.1484,
+    "diesel price" : 0.7482,
+    "code" : "LA"
+}, {
+    "country" : "n maced",
+    "gasoline price" : 1.1571,
+    "diesel price" : 1.0352999999999999,
+    "code" : "MK"
+}, {
+    "country" : "nicaragua",
+    "gasoline price" : 1.1571,
+    "diesel price" : 1.0266,
+    "code" : "NI"
+}, {
+    "country" : "aruba",
+    "gasoline price" : 1.1571,
+    "diesel price" : 1.0005,
+    "code" : "AW"
+}, {
+    "country" : "kenya",
+    "gasoline price" : 1.1658000000000002,
+    "diesel price" : 1.0962,
+    "code" : "KE"
+}, {
+    "country" : "saint lucia",
+    "gasoline price" : 1.1658000000000002,
+    "diesel price" : 1.1658000000000002,
+    "code" : "LC"
+}, {
+    "country" : "mozambique",
+    "gasoline price" : 1.1658000000000002,
+    "diesel price" : 1.1832,
+    "code" : "MZ"
+}, {
+    "country" : "ukraine",
+    "gasoline price" : 1.1919000000000002,
+    "diesel price" : 1.1745,
+    "code" : "UA"
+}, {
+    "country" : "bulgaria",
+    "gasoline price" : 1.2006,
+    "diesel price" : 1.1832,
+    "code" : "BG"
+}, {
+    "country" : "cape verde",
+    "gasoline price" : 1.2006,
+    "diesel price" : 0.9917999999999999,
+    "code" : "CV"
+}, {
+    "country" : "mauritius",
+    "gasoline price" : 1.2006,
+    "diesel price" : 1.1571,
+    "code" : "MU"
+}, {
+    "country" : "bosnia  herz",
+    "gasoline price" : 1.2092999999999998,
+    "diesel price" : 1.2006,
+    "code" : "BA"
+}, {
+    "country" : "sierra leone",
+    "gasoline price" : 1.2092999999999998,
+    "diesel price" : 1.2092999999999998,
+    "code" : "SL"
+}, {
+    "country" : "cayman islands",
+    "gasoline price" : 1.2615,
+    "diesel price" : 1.1571,
+    "code" : "KY"
+}, {
+    "country" : "cameroon",
+    "gasoline price" : 1.2615,
+    "diesel price" : 1.2441,
+    "code" : "CM"
+}, {
+    "country" : "malawi",
+    "gasoline price" : 1.2702,
+    "diesel price" : 1.3746,
+    "code" : "MW"
+}, {
+    "country" : "burkina faso",
+    "gasoline price" : 1.2789,
+    "diesel price" : 1.0179,
+    "code" : "BF"
+}, {
+    "country" : "ivory coast",
+    "gasoline price" : 1.2876,
+    "diesel price" : 1.0527,
+    "code" : "CI"
+}, {
+    "country" : "andorra",
+    "gasoline price" : 1.3137,
+    "diesel price" : 1.2006,
+    "code" : "AD"
+}, {
+    "country" : "malta",
+    "gasoline price" : 1.3311,
+    "diesel price" : 1.2006,
+    "code" : "MT"
+}, {
+    "country" : "zimbabwe",
+    "gasoline price" : 1.3311,
+    "diesel price" : 1.3224,
+    "code" : "ZW"
+}, {
+    "country" : "jordan",
+    "gasoline price" : 1.3311,
+    "diesel price" : 0.8351999999999999,
+    "code" : "JO"
+}, {
+    "country" : "cyprus",
+    "gasoline price" : 1.3659000000000001,
+    "diesel price" : 1.4442,
+    "code" : "CY"
+}, {
+    "country" : "romania",
+    "gasoline price" : 1.3833,
+    "diesel price" : 1.4181,
+    "code" : "RO"
+}, {
+    "country" : "czech republic",
+    "gasoline price" : 1.3833,
+    "diesel price" : 1.3572,
+    "code" : "CZ"
+}, {
+    "country" : "poland",
+    "gasoline price" : 1.3920000000000001,
+    "diesel price" : 1.4007,
+    "code" : "PL"
+}, {
+    "country" : "sweden",
+    "gasoline price" : 1.3920000000000001,
+    "diesel price" : 1.4442,
+    "code" : "SE"
+}, {
+    "country" : "new zealand",
+    "gasoline price" : 1.4094,
+    "diesel price" : 0.9830999999999999,
+    "code" : "NZ"
+}, {
+    "country" : "luxembourg",
+    "gasoline price" : 1.4267999999999998,
+    "diesel price" : 1.3398,
+    "code" : "LU"
+}, {
+    "country" : "lithuania",
+    "gasoline price" : 1.4528999999999999,
+    "diesel price" : 1.5050999999999999,
+    "code" : "LT"
+}, {
+    "country" : "montenegro",
+    "gasoline price" : 1.4616,
+    "diesel price" : 1.3485,
+    "code" : "ME"
+}, {
+    "country" : "hungary",
+    "gasoline price" : 1.4616,
+    "diesel price" : 1.4964,
+    "code" : "HU"
+}, {
+    "country" : "spain",
+    "gasoline price" : 1.4616,
+    "diesel price" : 1.3833,
+    "code" : "ES"
+}, {
+    "country" : "slovenia",
+    "gasoline price" : 1.4789999999999999,
+    "diesel price" : 1.5050999999999999,
+    "code" : "SI"
+}, {
+    "country" : "austria",
+    "gasoline price" : 1.4964,
+    "diesel price" : 1.4964,
+    "code" : "AT"
+}, {
+    "country" : "serbia",
+    "gasoline price" : 1.5138,
+    "diesel price" : 1.6269,
+    "code" : "RS"
+}, {
+    "country" : "croatia",
+    "gasoline price" : 1.5138,
+    "diesel price" : 1.4877,
+    "code" : "HR"
+}, {
+    "country" : "slovakia",
+    "gasoline price" : 1.5399,
+    "diesel price" : 1.4789999999999999,
+    "code" : "SK"
+}, {
+    "country" : "uk",
+    "gasoline price" : 1.5486,
+    "diesel price" : 1.6269,
+    "code" : "GB"
+}, {
+    "country" : "latvia",
+    "gasoline price" : 1.5573000000000001,
+    "diesel price" : 1.4789999999999999,
+    "code" : "LV"
+}, {
+    "country" : "belgium",
+    "gasoline price" : 1.5834000000000001,
+    "diesel price" : 1.6008,
+    "code" : "BE"
+}, {
+    "country" : "estonia",
+    "gasoline price" : 1.5834000000000001,
+    "diesel price" : 1.4355,
+    "code" : "EE"
+}, {
+    "country" : "uruguay",
+    "gasoline price" : 1.5921,
+    "diesel price" : 1.0179,
+    "code" : "UY"
+}, {
+    "country" : "wallis and futuna",
+    "gasoline price" : 1.6008,
+    "diesel price" : 1.6008,
+    "code" : "WF"
+}, {
+    "country" : "germany",
+    "gasoline price" : 1.6617,
+    "diesel price" : 1.5573000000000001,
+    "code" : "DE"
+}, {
+    "country" : "france",
+    "gasoline price" : 1.6703999999999999,
+    "diesel price" : 1.566,
+    "code" : "FR"
+}, {
+    "country" : "portugal",
+    "gasoline price" : 1.6703999999999999,
+    "diesel price" : 1.5138,
+    "code" : "PT"
+}, {
+    "country" : "barbados",
+    "gasoline price" : 1.6791,
+    "diesel price" : 1.4355,
+    "code" : "BB"
+}, {
+    "country" : "norway",
+    "gasoline price" : 1.6791,
+    "diesel price" : 1.5573000000000001,
+    "code" : "NO"
+}, {
+    "country" : "finland",
+    "gasoline price" : 1.6878,
+    "diesel price" : 1.6703999999999999,
+    "code" : "FI"
+}, {
+    "country" : "mayotte",
+    "gasoline price" : 1.7052,
+    "diesel price" : 1.4355,
+    "code" : "YT"
+}, {
+    "country" : "italy",
+    "gasoline price" : 1.7226,
+    "diesel price" : 1.6182,
+    "code" : "IT"
+}, {
+    "country" : "greece",
+    "gasoline price" : 1.7226,
+    "diesel price" : 1.4964,
+    "code" : "GR"
+}, {
+    "country" : "ireland",
+    "gasoline price" : 1.7313,
+    "diesel price" : 1.7052,
+    "code" : "IE"
+}, {
+    "country" : "israel",
+    "gasoline price" : 1.7834999999999999,
+    "diesel price" : 1.6965,
+    "code" : "IL"
+}, {
+    "country" : "singapore",
+    "gasoline price" : 1.8182999999999998,
+    "diesel price" : 1.6617,
+    "code" : "SG"
+}, {
+    "country" : "switzerland",
+    "gasoline price" : 1.8531,
+    "diesel price" : 1.9575,
+    "code" : "CH"
+}, {
+    "country" : "liechtenstein",
+    "gasoline price" : 1.8618000000000001,
+    "diesel price" : 2.001,
+    "code" : "LI"
+}, {
+    "country" : "netherlands",
+    "gasoline price" : 1.9140000000000001,
+    "diesel price" : 1.653,
+    "code" : "NL"
+}, {
+    "country" : "denmark",
+    "gasoline price" : 1.9226999999999999,
+    "diesel price" : 1.8182999999999998,
+    "code" : "DK"
+}, {
+    "country" : "iceland",
+    "gasoline price" : 2.0445,
+    "diesel price" : 2.1576,
+    "code" : "IS"
+}, {
+    "country" : "hong kong",
+    "gasoline price" : 3.0101999999999998,
+    "diesel price" : 2.9232,
+    "code" : "HK"
+}, {
+    "country" : "indonesia",
+    "gasoline price" : 0.6873,
+    "diesel price" : 0.7482,
+    "code" : "ID"
+} ]

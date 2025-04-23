@@ -110,12 +110,57 @@
 </div>
 
 <div class="trip-plan" id="trip-plan-section" style="display: none;">
-    <h3 id="trip-plan-title">Kelionės planas:</h3>
+    <div class="trip-header-row">
+        <h3>Kelionės planas:</h3>
+        <button id="fuel-cost-button" class="fuel-cost-btn">⛽ Degalų sąnaudos</button>
+    </div>
     <ul id="trip-plan-list"></ul>
     <div class="compact-info" id="bottom-info">
         <span><strong>Atstumas:</strong> <span id="distance-bottom">-</span></span> |
         <span><strong>Numatoma kelionės trukmė:</strong> <span id="duration-bottom">-</span></span> |
         <span><strong>Numatoma kelionės kaina:</strong> <span id="total-place-cost-bottom">0 €</span></span>
+    </div>
+</div>
+
+<div id="fuel-cost-modal" class="confirm-modal">
+    <div class="confirm-modal-content">
+        <span class="modal-close" id="fuel-close">&times;</span>
+        <p><strong>⛽ Įveskite vidutines degalų sąnaudas:</strong></p>
+        <div class="fuel-consumption-row">
+            <input type="number" id="fuel-input" min="1" step="0.1" value="6">
+            <span class="unit-label">(l/100 km)</span>
+        </div>
+        <p><strong>Pasirinkite degalų ir kainos apskaičiavimo tipą:</strong></p>
+        <table class="fuel-radio-table">
+            <tr>
+                <td>
+                    <label><input type="radio" name="fuel-type" value="gasoline" checked> Benzinas</label>
+                </td>
+                <td>
+                    <label><input type="radio" name="fuel-type" value="diesel"> Dyzelinas</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="tooltip-container">
+                        <input type="radio" name="fuel-input" value="jsonValue" checked>
+                        Naudoti apytikslę kainą
+                        <span class="tooltip-text" id="fuel-tooltip"></span>
+                    </label>
+                </td>
+                <td>
+                    <label><input type="radio" name="fuel-input" value="custom"> Naudoti norimą kainą</label>
+                </td>
+            </tr>
+        </table>
+        <div id="custom-price-wrapper" style="display: none;">
+            <label for="fuel-price-input">Kaina už litrą (€):</label>
+            <input type="number" id="fuel-price-input" min="0.01" step="0.01" value="1.55">
+        </div>
+        <div class="confirm-buttons" style="margin-top: 20px;">
+            <button id="confirm-fuel" class="btn-confirm">Išsaugoti</button>
+            <button id="cancel-fuel" class="btn-cancel">Atšaukti</button>
+        </div>
     </div>
 </div>
 

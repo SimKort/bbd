@@ -10,6 +10,7 @@ import './map_custom_place';
 import './map_information_window';
 import './map_trip_places';
 import "./map_price_popup";
+import "./map_fuel_price";
 
 export let map, directionsService, directionsRenderer, placesService, infoWindow;
 let startAutocomplete, endAutocomplete, customAutocomplete;
@@ -106,6 +107,26 @@ export function updateTexts() {
             strongTags[2].textContent = t.totalCost;
         }
     }
+    const fuelT = translations[currentLanguage];
+    const fuelButton = document.getElementById("fuel-cost-button");
+    if (fuelButton) fuelButton.textContent = fuelT.fuel_cost_button;
+    const fuelTitle = document.querySelector("#fuel-cost-modal .confirm-modal-content p strong");
+    if (fuelTitle) fuelTitle.textContent = fuelT.fuel_title;
+    const fuelPrompt = document.querySelectorAll("#fuel-cost-modal .confirm-modal-content p strong")[1];
+    if (fuelPrompt) fuelPrompt.textContent = fuelT.fuel_type_prompt;
+    const radioLabels = document.querySelectorAll(".fuel-radio-table label");
+    if (radioLabels.length >= 4) {
+        radioLabels[0].lastChild.textContent = " " + fuelT.fuel_type_gasoline;
+        radioLabels[1].lastChild.textContent = " " + fuelT.fuel_type_diesel;
+        radioLabels[2].childNodes[2].textContent = " " + fuelT.fuel_price_type_json;
+        radioLabels[3].lastChild.textContent = " " + fuelT.fuel_price_type_custom;
+    }
+    const fuelLabel = document.querySelector('label[for="fuel-price-input"]');
+    if (fuelLabel) fuelLabel.textContent = fuelT.fuel_price_label;
+    const saveFuelBtn = document.getElementById("confirm-fuel");
+    if (saveFuelBtn) saveFuelBtn.textContent = fuelT.fuel_button_save;
+    const cancelFuelBtn = document.getElementById("cancel-fuel");
+    if (cancelFuelBtn) cancelFuelBtn.textContent = fuelT.fuel_button_cancel;
     renderTripPlan();
 }
 

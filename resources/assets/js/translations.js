@@ -63,7 +63,20 @@ export const translations = {
         filterError: "Pasirinkite bent vieną filtrą.",
         routeError: "Nepavyko rasti maršruto: ",
         alreadyAdded: "Ši vieta jau įtraukta į maršrutą.",
-        exceedingLimit: "Šiuo metu į kelionės maršrutą galima įtraukti tik iki 20 kelionės taškų."
+        exceedingLimit: "Šiuo metu į kelionės maršrutą galima įtraukti tik iki 20 kelionės taškų.",
+        fuel_cost_button: "⛽ Degalų sąnaudos",
+        fuel_title: "⛽ Įveskite vidutines degalų sąnaudas:",
+        fuel_type_prompt: "Pasirinkite degalų ir kainos apskaičiavimo tipą:",
+        fuel_type_gasoline: "Benzinas",
+        fuel_type_diesel: "Dyzelinas",
+        fuel_price_type_json: "Naudoti apytikslę kainą",
+        fuel_price_type_custom: "Naudoti norimą kainą",
+        fuel_price_label: "Kaina už litrą (€):",
+        fuel_button_save: "Išsaugoti",
+        fuel_button_cancel: "Atšaukti",
+        fuel_tooltip_price_not_found: "Jūsų pradžios taško valstybės vidutinė degalų kaina nerasta.",
+        fuel_tooltip_with_data: (type, countryCode, price) => `Apytikslės kainos nustatymui bus naudojama vidutinė šio degalų tipo kaina valstybėje, kurioje prasidės jūsų kelionė. Esama ${type === "diesel" ? "dyzelino" : "benzino"} kaina ${countryCode} valstybėje yra ~${price} €.`,
+        fuel_tooltip_not_found: "Deja, nepavyko rasti vidutinės šio degalų tipo kainos valstybėje, kurioje prasidės jūsų kelionė."
     },
     en: {
         title: "Travel planning",
@@ -129,6 +142,19 @@ export const translations = {
         filterError: "Please select at least one filter option.",
         routeError: "Could not find route: ",
         alreadyAdded: "This location is already added to the route.",
-        exceedingLimit: "Currently, only up to 20 waypoints can be added to a travel route."
+        exceedingLimit: "Currently, only up to 20 waypoints can be added to a travel route.",
+        fuel_cost_button: "⛽ Fuel consumption",
+        fuel_title: "⛽ Enter average fuel consumption:",
+        fuel_type_prompt: "Choose fuel type and price calculation method:",
+        fuel_type_gasoline: "Gasoline",
+        fuel_type_diesel: "Diesel",
+        fuel_price_type_json: "Use approximate price",
+        fuel_price_type_custom: "Use custom price",
+        fuel_price_label: "Price per liter (€):",
+        fuel_button_save: "Save",
+        fuel_button_cancel: "Cancel",
+        fuel_tooltip_price_not_found: "The average fuel price for your starting point country was not found.",
+        fuel_tooltip_with_data: (type, countryCode, price) => `An approximate fuel price will be used based on the country where your trip starts. An approximate ${type === "diesel" ? "diesel" : "gasoline"} price in ${countryCode} is ~${price} €.`,
+        fuel_tooltip_not_found: "Could not find a fuel price for the selected type and country."
     }
 };

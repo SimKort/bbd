@@ -75,6 +75,7 @@ body {
 }
 #mode {
     min-width: 115px;
+    accent-color: #618B25;
 }
 .filter-wrapper {
     position: relative;
@@ -199,6 +200,7 @@ input[type="checkbox"] {
 .route-btn {
     background-color: #a44200;
     color: #f5e9e1;
+    font-weight: 600;
     border: none;
     padding: 7px 16px;
     border-radius: 4px;
@@ -212,6 +214,8 @@ input[type="checkbox"] {
 .suggest-btn {
     background-color: #a44200;
     color: #f5e9e1;
+    font-weight: 600;
+    min-width: 240px;
     border: none;
     padding: 7px;
     border-radius: 4px;
@@ -447,6 +451,7 @@ input[type="checkbox"] {
 .add-place-btn {
     background-color: #a44200;
     color: #f5e9e1;
+    font-weight: 600;
     border: none;
     align-self: center;
     width: 60%;
@@ -646,11 +651,183 @@ input[type="checkbox"] {
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
-.trip-plan h3 {
-    color: #a44200;
+.trip-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 20px;
+    h3 {
+        margin: 0;
+        color: #a44200;
+        font-size: 24px;
+    }
+    .fuel-cost-btn {
+        background-color: #f0f8ea;
+        border: 1px solid #618B25;
+        color: #3b5714;
+        border-radius: 6px;
+        padding: 6px 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+    .fuel-cost-btn:hover {
+        background-color: #cfe8bd;
+    }
+}
+#fuel-cost-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
+    justify-content: center;
+    align-items: center;
+}
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
     font-size: 24px;
-    margin-top: 10px;
-    margin-bottom: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.2s;
+    &:hover {
+        color: #333;
+    }
+}
+#fuel-cost-modal .confirm-modal-content {
+    position: relative;
+    background-color: #fff;
+    padding: 24px 28px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    max-width: 400px;
+    width: 90%;
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #333;
+    p {
+        margin-bottom: 10px;
+        color: #a44200;
+    }
+    label {
+        font-weight: 600;
+        display: block;
+        margin-top: 8px;
+        margin-bottom: 10px;
+    }
+    p + .fuel-radio-table {
+        margin-top: -10px;
+    }
+    .fuel-radio-table {
+        margin-bottom: 0;
+    }
+    .fuel-consumption-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .tooltip-container {
+        position: relative;
+        display: inline-block;
+        cursor: help;
+        .tooltip-text {
+            visibility: hidden;
+            width: 260px;
+            background-color: #cfe8bd;
+            color: #333333;
+            text-align: left;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 10;
+            bottom: 125%;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+            line-height: 1.3;
+        }
+        &:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+    #fuel-input {
+        width: 80px;
+        padding: 4px 6px;
+        border: 1px solid #999;
+        border-radius: 6px;
+    }
+    .unit-label {
+        font-weight: 500;
+    }
+    .fuel-radio-table {
+        width: 100%;
+    }
+    .fuel-radio-table label {
+        font-weight: normal;
+    }
+    .fuel-radio-table td {
+        padding: 0;
+        vertical-align: middle;
+    }
+    .fuel-radio-table input[type="radio"] {
+        margin-right: 6px;
+    }
+    input[type="radio"] {
+        margin-right: 6px;
+        vertical-align: middle;
+        accent-color: #618B25;
+    }
+    #custom-price-wrapper {
+        margin-top: 0;
+    }
+    #custom-price-wrapper label {
+        color: #a44200;
+    }
+    #fuel-price-input{
+        width: 80px;
+        padding: 4px 6px;
+        border: 1px solid #999;
+        border-radius: 6px;
+    }
+    .confirm-buttons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 100px;
+        button {
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-confirm {
+            background-color: #618B25;
+            color: #e1f0cc;
+        }
+        .btn-confirm:hover {
+            background-color: #3b5714;
+        }
+        .btn-cancel {
+            background-color: #6c757d;
+            color: white;
+        }
+        .btn-cancel:hover {
+            background-color: #535b61;
+        }
+    }
 }
 #trip-plan-list {
     list-style: none;
@@ -1013,8 +1190,10 @@ input[type="checkbox"] {
         align-items: flex-start;
     }
     .place-thumbnail img {
-        width: 100%;
-        height: auto;
+        width: 100px;
+        height: 75px;
+        object-fit: cover;
+        border-radius: 6px;
     }
     .place-info-container {
         width: 100%;

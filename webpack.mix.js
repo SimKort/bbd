@@ -9,6 +9,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .sourceMaps();
 
 mix.copy('resources/assets/images', 'public/images');
+mix.copy('resources/assets/data', 'public/data');
 
 if (mix.inProduction()) {
     mix.version();

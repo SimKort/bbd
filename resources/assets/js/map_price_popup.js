@@ -3,7 +3,8 @@ import { currentLanguage } from "./toolbar_language";
 import { addedWaypoints } from "./map_route_creation";
 import { suggestedPlaces } from "./map_find_attractions";
 import { renderTripPlan } from "./map_trip_places";
-
+import { updateTotalCombinedCost } from './map_fuel_price';
+export let totalObjectCost = 0;
 let currentPricePopup = null;
 
 // Kainos įvedimo laukelio atidarymo funkcija
@@ -79,7 +80,6 @@ document.addEventListener("click", function(event) {
     }
 });
 
-
 // Vietos nustatytos kainos atnaujinimo funkcija
 export function updatePlaceCost(index) {
     const input = document.getElementById(`place-cost-${index}`);
@@ -92,7 +92,6 @@ window.updatePlaceCost = updatePlaceCost;
 export function updateTotalPlaceCost() {
     const totalSuggested = suggestedPlaces.reduce((sum, p) => sum + (p.cost || 0), 0);
     const totalAdded = addedWaypoints.reduce((sum, p) => sum + (p.cost || 0), 0);
-    const total = totalSuggested + totalAdded;
-    document.getElementById("total-place-cost").textContent = total.toFixed(2) + " €";
-    document.getElementById("total-place-cost-bottom").textContent = total.toFixed(2) + " €";
+    totalObjectCost = totalSuggested + totalAdded;
+    updateTotalCombinedCost();
 }

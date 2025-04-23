@@ -2,14 +2,18 @@ import { currentLanguage } from "./toolbar_language";
 import { map, directionsService, directionsRenderer, placesService } from "./map";
 import { setLastRouteSteps } from "./map_suggested_places";
 import { setCurrentStart, setCurrentEnd, setCurrentStartName, setCurrentEndName, renderTripPlan } from "./map_trip_places";
+import { setFuelStartCountry, updateTooltip } from "./map_fuel_price";
 
 export let addedWaypoints = [];
-let currentMode = "DRIVING";
-let walkingPolyline = null;
-let startMarker, endMarker;
+let currentMode = "DRIVING", walkingPolyline = null, startMarker, endMarker;
+let fuelModalShown = false;
+export function setFuelModalShown(value) {
+    fuelModalShown = value;
+}
 
 // Maršruto apskaičiavimo funkcija
 export function calculateRoute() {
+    directionsRenderer.set('directions', null);
     const start = document.getElementById("start").value;
     const end = document.getElementById("end").value;
     const mode = document.getElementById("mode").value;
@@ -42,7 +46,7 @@ function findPlaceId(query, callback) {
 function getPlaceDetails(placeId, callback) {
     placesService.getDetails({
         placeId,
-        fields: ['name', 'formatted_address', 'geometry'],
+        fields: ['name', 'formatted_address', 'geometry', 'address_components'],
         language: currentLanguage
     }, (details, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK && details) {
@@ -75,9 +79,13 @@ function handleRouteDetails(startDetails, endDetails, start, end, mode) {
     });
     renderTripPlan();
     requestRoute(start, end, mode);
+    const countryComponent = startDetails.address_components.find(c => c.types.includes("country"));
+    const countryCode = countryComponent?.short_name || null;
+    setFuelStartCountry(countryCode);
+    updateTooltip()
 }
 
-// Maršruto su tarpinias taškais pagal pasirinktą keliavimo būdą užklausos funkcija
+// Maršruto su tarpiniais taškais pagal pasirinktą keliavimo būdą užklausos funkcija
 function requestRoute(start, end, mode) {
     directionsService.route({
         origin: start,
@@ -86,6 +94,15 @@ function requestRoute(start, end, mode) {
         waypoints: addedWaypoints.map(p => ({ location: p.location, stopover: true })),
         optimizeWaypoints: true
     }, handleRouteResponse);
+    if (mode === "DRIVING" && !fuelModalShown) {
+        setTimeout(() => {
+            const modal = document.getElementById("fuel-cost-modal");
+            if (modal) {
+                modal.style.display = "block";
+                fuelModalShown = true;
+            }
+        }, 500);
+    }
 }
 
 // Directions API atsakymo apdorojimo funkcija
@@ -103,6 +120,9 @@ function handleRouteResponse(response, status) {
     }
     calculateAndDisplayRouteSummary(response);
     fitMapToRouteBounds(response);
+    const order = response.routes[0].waypoint_order || [];
+    const sortedWaypoints = order.map(index => addedWaypoints[index]);
+    renderTripPlan(sortedWaypoints);
     showPlacesSection();
 }
 
@@ -157,7 +177,10 @@ function fitMapToRouteBounds(response) {
         bounds.extend(leg.start_location);
         bounds.extend(leg.end_location);
     });
-    map.fitBounds(bounds);
+    google.maps.event.trigger(map, "resize");
+    setTimeout(() => {
+        map.fitBounds(bounds);
+    }, 50);
 }
 
 // Lankytinų vietų elemento atvaizdavimo funkcija
