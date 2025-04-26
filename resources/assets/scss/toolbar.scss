@@ -7,7 +7,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #618B25;
+    background-color: #618b25;
     color: white;
     padding: 10px 20px;
     z-index: 1000;
@@ -22,10 +22,20 @@
         font-size: 18px;
         font-weight: 600;
         letter-spacing: 0.5px;
+        color: white;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .logo:visited,
+    .logo:hover,
+    .logo:active {
+        color: white;
+        text-decoration: none;
     }
     .language-selector {
+        font-family: sans-serif;
         position: relative;
-        margin-right: 40px;
+        margin-right: 20px;
         button {
             background: none;
             border: none;
@@ -45,7 +55,7 @@
             min-width: 100px;
             display: none;
             box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-            z-index: 1001;
+            z-index: 2001;
             div {
                 padding: 8px 12px;
                 cursor: pointer;
@@ -58,6 +68,9 @@
             }
         }
     }
+}
+*, ::after, ::before {
+    box-sizing: border-box;
 }
 /*--------------------------------------------------------*/
 
@@ -78,7 +91,7 @@
         margin-right: 0;
     }
     .language-selector button {
-        font-size: 14px;
+        font-size: 12px;
     }
 }
 /*--------------------------------------------------------*/

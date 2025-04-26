@@ -1,6 +1,6 @@
 <header class="toolbar">
     <div class="toolbar-content">
-        <span id="toolbar-title" class="logo">🌍 Kelionių planavimo įrankis</span>
+        <a href="/" id="toolbar-title" class="logo">🌍 Kelionių planavimo įrankis</a>
         <div class="language-selector">
             <button id="current-language" onclick="toggleLanguageDropdown()">Lt</button>
             <div id="language-dropdown" class="dropdown">

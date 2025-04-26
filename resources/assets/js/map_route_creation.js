@@ -1,4 +1,4 @@
-import { currentLanguage } from "./toolbar_language";
+import { currentLanguage } from "./toolbar_language_map";
 import { map, directionsService, directionsRenderer, placesService } from "./map";
 import { setLastRouteSteps } from "./map_suggested_places";
 import { setCurrentStart, setCurrentEnd, setCurrentStartName, setCurrentEndName, renderTripPlan } from "./map_trip_places";

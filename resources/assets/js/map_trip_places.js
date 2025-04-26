@@ -1,5 +1,5 @@
 import { translations } from "./translations";
-import { currentLanguage } from "./toolbar_language";
+import { currentLanguage } from "./toolbar_language_map";
 import { addedWaypoints, calculateRoute } from "./map_route_creation";
 import { markerMap } from "./map_places_to_route";
 import { showInfoWindow } from "./map_information_window";

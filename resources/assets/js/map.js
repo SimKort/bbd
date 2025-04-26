@@ -1,4 +1,4 @@
-import { currentLanguage } from './toolbar_language';
+import { currentLanguage } from './toolbar_language_map';
 import { translations } from './translations';
 import './map_route_search';
 import './map_search_filter';

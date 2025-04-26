@@ -1,4 +1,4 @@
-import { currentLanguage } from './toolbar_language';
+import { currentLanguage } from './toolbar_language_map';
 import { translations } from './translations';
 import { setFuelModalShown } from './map_route_creation';
 import { totalObjectCost } from './map_price_popup';

@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="{{ asset('css/toolbar.css') }}">
     <title>Kelionių planavimas</title>
+    <link rel="stylesheet" href="{{ asset('css/toolbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/map.css') }}">
 </head>
 
@@ -174,7 +174,7 @@
     </div>
 </div>
 
-<script src="{{ mix('js/toolbar_language.js') }}"></script>
+<script src="{{ mix('js/toolbar_language_map.js') }}"></script>
 <script src="{{ mix('js/map.js') }}"></script>
 
 <script>

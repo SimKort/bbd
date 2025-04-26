@@ -1,4 +1,4 @@
-import { currentLanguage } from "./toolbar_language";
+import { currentLanguage } from "./toolbar_language_map";
 import { translations } from "./translations";
 import { map, placesService } from "./map";
 import { calculateRoute } from "./map_route_creation";

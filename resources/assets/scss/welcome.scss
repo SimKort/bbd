@@ -1,0 +1,113 @@
+/* Puslapio bendri išvaizdos nustatymai */
+body {
+    height: 100vh;
+    background: url("../images/background.png") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+/*----------------------------------------------------------------*/
+
+/* Puslapio elementai */
+.hero-box {
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 30px;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 92%;
+    text-align: center;
+}
+.hero-box h1 {
+    font-weight: 600;
+    color: #212121;
+}
+.hero-box p {
+    color: black;
+}
+.start-button {
+    padding: 8px;
+    font-size: 18px;
+    min-width: 150px;
+    border: none;
+    border-radius: 8px;
+    background-color: #618b25;
+    color: white;
+    transition: background-color 0.3s;
+}
+.start-button:hover {
+    background-color: #618b25;
+}
+/*----------------------------------------------------------------*/
+
+/* Pasirinkimų meniu */
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    height: 50vh;
+}
+.modal-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: #333333;
+}
+.btn-close {
+    filter: grayscale(1) opacity(0.6);
+    transition: all 0.2s ease-in-out;
+}
+.btn-close:hover {
+    filter: none;
+    opacity: 1;
+}
+.modal-header {
+    border-bottom: 1px solid #baaea2;
+}
+.modal-content{
+    background-color: #f0e0d1;
+    border-radius: 16px;
+    min-height: 290px;
+}
+.modal-body {
+    margin-top: 20px;
+}
+.modal-body a.btn {
+    border-radius: 12px;
+    padding: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+.modal-body a.btn-primary {
+    background-color: #618b25;
+    border-color: #618b25;
+    color: white;
+}
+.modal-body a.btn-primary:hover {
+    background-color: #3b5714;
+}
+.modal-body a.btn-outline-primary {
+    margin-bottom: 10px;
+    color: white;
+    background-color: #a44200;
+    border-color: #a44200;
+}
+.modal-body a.btn-outline-primary:hover {
+    background-color: #7d3301;
+    color: white;
+}
+.guest-link {
+    display: inline-block;
+
+    font-size: 0.95rem;
+    color: #333333;
+    text-decoration: underline;
+    transition: color 0.2s ease-in-out;
+}
+.guest-link:hover {
+    font-weight: 600;
+}
+/*----------------------------------------------------------------*/

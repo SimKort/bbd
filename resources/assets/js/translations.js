@@ -2,6 +2,15 @@ export const translations = {
     lt: {
         title: "Kelionių planavimas",
         toolbarTitle: "🌍 Kelionių planavimo įrankis",
+        /*------------------------------------------------------------------------------------------------------------*/
+        smallTitle: "Kelionių planavimo įrankis",
+        smallIntro: "Planuokite keliones greitai ir patogiai – nuo pradžios iki galo. Viskas vienoje vietoje!",
+        startToChoose: "Pradėti",
+        welcomeModalTitle: "Pasirinkite, kaip norite tęsti",
+        login: "Prisijungti",
+        register: "Užsiregistruoti",
+        continueWithoutAccount: "Tęsti be paskyros",
+        /*------------------------------------------------------------------------------------------------------------*/
         startPlaceholder: "Įveskite pradžios tašką",
         endPlaceholder: "Įveskite kelionės tikslą",
         drivingChoice: "Automobiliu",
@@ -81,6 +90,15 @@ export const translations = {
     en: {
         title: "Travel planning",
         toolbarTitle: "🌍 Travel planning tool",
+        /*------------------------------------------------------------------------------------------------------------*/
+        smallTitle: "Travel planning tool",
+        smallIntro: "Plan your trips quickly and conveniently - from start to finish. Everything in one place!",
+        startToChoose: "Start",
+        welcomeModalTitle: "Choose how you'd like to continue",
+        login: "Login",
+        register: "Register",
+        continueWithoutAccount: "Continue without an account",
+        /*------------------------------------------------------------------------------------------------------------*/
         startPlaceholder: "Enter starting point",
         endPlaceholder: "Enter destination point",
         drivingChoice: "By car",

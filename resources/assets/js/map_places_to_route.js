@@ -1,5 +1,5 @@
 import { translations } from "./translations";
-import { currentLanguage } from "./toolbar_language";
+import { currentLanguage } from "./toolbar_language_map";
 import { map, placesService } from "./map";
 import { addedWaypoints, calculateRoute } from "./map_route_creation";
 import { suggestedPlaces } from "./map_find_attractions";

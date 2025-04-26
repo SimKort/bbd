@@ -1,5 +1,5 @@
 import { translations } from "./translations";
-import { currentLanguage } from "./toolbar_language";
+import { currentLanguage } from "./toolbar_language_map";
 
 const allPlaceTypes = [
     { value: "tourist_attraction", label: "Lankytini objektai" },

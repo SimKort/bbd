@@ -1,4 +1,4 @@
-import { currentLanguage } from "./toolbar_language";
+import { currentLanguage } from "./toolbar_language_map";
 import { map, placesService } from "./map";
 import { addedWaypoints } from "./map_route_creation";
 import { renderSuggestedPlaces } from "./map_suggested_places";
