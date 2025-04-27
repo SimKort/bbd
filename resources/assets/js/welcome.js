@@ -5,6 +5,7 @@ import { translations } from './translations';
 export function updateTexts() {
     const lang = localStorage.getItem('preferredLang') || 'lt';
     const t = translations[lang];
+    document.title = t.titleWelcome;
     const toolbarTitle = document.getElementById("toolbar-title");
     if (toolbarTitle) {toolbarTitle.textContent = t.toolbarTitle;}
     const titleEl = document.getElementById("startModalLabel");

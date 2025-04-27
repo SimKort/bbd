@@ -35,7 +35,7 @@
     .language-selector {
         font-family: sans-serif;
         position: relative;
-        margin-right: 20px;
+        margin-right: 5px;
         button {
             background: none;
             border: none;
@@ -43,6 +43,9 @@
             font-weight: bold;
             cursor: pointer;
             font-size: 14px;
+        }
+        button:hover {
+            color: #ccc;
         }
         .dropdown {
             position: absolute;
@@ -67,6 +70,76 @@
                 display: block;
             }
         }
+    }
+}
+.toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    .user-button {
+        background: none;
+        border: none;
+        color: #f4f1ee;
+        font-size: 14px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        margin: 0 10px 0 0;
+    }
+    .user-button:hover {
+        color: #ccc;
+    }
+    .dropdown {
+        position: absolute;
+        top: 120%;
+        right: 0;
+        background: white;
+        color: black;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        min-width: 120px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        display: none;
+        flex-direction: column;
+        z-index: 2001;
+        .dropdown-item {
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 100%;
+            font-size: 14px;
+            &:hover {
+                background: #eee;
+            }
+        }
+    }
+    .dropdown.show {
+        display: flex;
+    }
+}
+.guest-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    .login-link {
+        margin: 0 20px 0 0;
+        color: #f4f1ee;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.2s;
+        font-size: 14px;
+    }
+    .login-link:hover {
+        color: #ccc;
     }
 }
 *, ::after, ::before {

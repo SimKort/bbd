@@ -1,4 +1,4 @@
-import { updateTexts, reinitializeAutocompletes, loadGoogleMapsApi } from './map';
+import { updateTexts } from "./register";
 
 export let currentLanguage = localStorage.getItem('preferredLang') || 'lt';
 
@@ -12,17 +12,9 @@ export function toggleLanguageDropdown() {
 window.toggleLanguageDropdown = toggleLanguageDropdown;
 
 // Kalbos pasirinkimo nustatymo funkcija
-export function setLanguage(lang, skipReload = false) {
+function setLanguage(lang) {
     localStorage.setItem('preferredLang', lang);
-    updateLanguageUI(lang);
-    hideLanguageDropdown();
-    if (!skipReload) {
-        saveInputsToLocalStorage();
-        reloadGoogleMapsWithLang(() => {
-            updateTexts();
-            reinitializeAutocompletes();
-        });
-    }
+    window.location.href = window.location.pathname;
 }
 window.setLanguage = setLanguage;
 
@@ -50,25 +42,6 @@ function hideLanguageDropdown() {
     }
 }
 
-// Pagrindinių įvesties laukų duomenų išsaugojimo į localStorage funkcija
-function saveInputsToLocalStorage() {
-    localStorage.setItem('startLocation', document.getElementById('start').value);
-    localStorage.setItem('endLocation', document.getElementById('end').value);
-    localStorage.setItem('travelMode', document.getElementById('mode').value);
-    localStorage.setItem('radius', document.getElementById('radius-input').value);
-    localStorage.setItem('customPlace', document.getElementById('custom-place').value);
-}
-
-// Google Maps perkrovimo su pasirinkta kalba funkcija
-function reloadGoogleMapsWithLang(callback) {
-    const oldScript = document.querySelector('script[src*="maps.googleapis.com"]');
-    if(oldScript){
-        oldScript.remove();
-    }
-    loadGoogleMapsApi(callback);
-    location.reload();
-}
-
 // Kalbos pasirinkimo išskleidžiamojo meniu uždarymas, paspaudus už jo ribų
 document.addEventListener('click', (e) => {
     if (!e.target.closest('.language-selector')) {
@@ -81,13 +54,10 @@ document.addEventListener('click', (e) => {
 
 // Nustato kalbą pagal išsaugotą reikšmę iš localStorage (arba naudoja esamą, jei nėra)
 window.addEventListener('DOMContentLoaded', () => {
-    const storedLang = localStorage.getItem('preferredLang');
-    if (storedLang){
-        setLanguage(storedLang, true);
-    }
-    else{
-        setLanguage(currentLanguage, true);
-    }
+    const storedLang = localStorage.getItem('preferredLang') || 'lt';
+    updateLanguageUI(storedLang);
+    hideLanguageDropdown();
+    updateTexts();
 });
 
 // Paskyros išskleidžiamojo meniu parodymo funkcija

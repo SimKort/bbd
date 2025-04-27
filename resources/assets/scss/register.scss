@@ -1,0 +1,109 @@
+/* Puslapio bendri išvaizdos nustatymai */
+body {
+    background: url("../images/background.png") no-repeat center center fixed;
+    background-size: cover;
+    font-family: sans-serif;
+    margin: 0;
+}
+/*----------------------------------------------------------------*/
+
+/* Registracijos formos elementai */
+.register-box {
+    background-color: rgba(240, 224, 209, 0.8);
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 400px;
+    width: 90%;
+    backdrop-filter: blur(10px);
+}
+h2 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+}
+.form-label {
+    font-weight: 600;
+}
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    input {
+        padding-right: 40px;
+    }
+    .toggle-password-btn {
+        position: absolute;
+        right: 25px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: white;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 1;
+        display: none;
+    }
+    .clear-btn {
+        position: absolute;
+        top: 50%;
+        right: 6px;
+        transform: translateY(-50%);
+        background-color: white;
+        border: none;
+        font-size: 24px;
+        color: #4f4f4f;
+        cursor: pointer;
+        opacity: 1;
+        padding: 0 4px;
+        display: none;
+        border-radius: 100%;
+    }
+    .clear-btn:hover {
+        color: #212121;
+    }
+}
+.input-wrapper input.is-invalid,
+input.is-invalid {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.error-message {
+    color: #c20027;
+    font-size: 0.9rem;
+    margin-top: 4px;
+    display: none;
+}
+.btn-primary {
+    margin-top: 12px;
+    background-color: #618b25;
+    border-color: #618b25;
+    border-radius: 12px;
+}
+.btn-primary:hover {
+    background-color: #3b5714;
+    border-color: #3b5714;
+}
+button.btn-primary:focus,
+button.btn-primary:active,
+button.btn-primary:focus:active {
+    background-color: #3b5714;
+    border-color: #3b5714;
+    box-shadow: none;
+}
+.text-center.mt-3 a {
+    color: #016e5d;
+    text-decoration: underline;
+    //font-weight: 600;
+    transition: color 0.2s ease;
+    &:hover {
+        color: #01473d;
+    }
+}
+.spinner-border {
+    width: 5rem;
+    height: 5rem;
+    border-width: 0.75em;
+    border-color: #618b25 transparent #618b25 #618b25;
+}
+/*----------------------------------------------------------------*/

@@ -59,3 +59,22 @@ window.addEventListener('DOMContentLoaded', () => {
     const storedLang = localStorage.getItem('preferredLang') || 'lt';
     setLanguage(storedLang);
 });
+
+// Paskyros išskleidžiamojo meniu parodymo funkcija
+function toggleUserDropdown() {
+    const dropdown = document.getElementById('user-dropdown');
+    if (dropdown) {
+        dropdown.classList.toggle('show');
+    }
+}
+window.toggleUserDropdown = toggleUserDropdown;
+
+// Uždaryti paskyros išskleidžiamąjį meniu paspaudus kitur
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.user-menu')) {
+        const dropdown = document.getElementById('user-dropdown');
+        if (dropdown){
+            dropdown.classList.remove('show');
+        }
+    }
+});

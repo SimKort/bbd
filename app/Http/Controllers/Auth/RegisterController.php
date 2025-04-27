@@ -10,17 +10,6 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
     /**
@@ -28,7 +17,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/map';
 
     /**
      * Create a new controller instance.
@@ -48,11 +37,21 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        $validator = Validator::make($data, [
+            'name' => ['required', 'string', 'max:15', 'unique:users,name'],
+            'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
+            'password' => ['required', 'string', 'min:128', 'confirmed'],
+        ], [
+            'name.required' => 'Naudotojo vardas yra privalomas.',
+            'name.unique' => 'Toks naudotojo vardas jau egzistuoja.',
+            'email.required' => 'El. paštas yra privalomas.',
+            'email.email' => 'Neteisingas el. pašto formatas.',
+            'email.unique' => 'Toks el. paštas jau naudojamas.',
+            'email.max' => 'El. paštas negali būti ilgesnis nei 50 simbolių.',
+            'password.required' => 'Slaptažodis yra privalomas.',
+            'password.confirmed' => 'Slaptažodžiai nesutampa.',
         ]);
+        return $validator;
     }
 
     /**
