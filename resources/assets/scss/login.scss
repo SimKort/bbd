@@ -7,8 +7,8 @@ body {
 }
 /*----------------------------------------------------------------*/
 
-/* Registracijos formos elementai */
-.register-box {
+/* Prisijungimo formos elementai */
+.login-box {
     background-color: rgba(240, 224, 209, 0.8);
     padding: 30px;
     border-radius: 16px;
@@ -23,6 +23,9 @@ h2 {
 }
 .form-label {
     font-weight: 600;
+}
+form {
+    transition: opacity 0.3s ease;
 }
 .input-wrapper {
     position: relative;

@@ -16,7 +16,12 @@
     <div class="hero-box">
         <h1 id="small-title" class="mb-3 fs-3">Kelionių planavimo įrankis</h1>
         <p id="small-intro" class="lead mb-4 fw-medium">Planuokite keliones greitai ir patogiai – nuo pradžios iki galo. Viskas vienoje vietoje!</p>
-        <button id="start-button" class="start-button" data-bs-toggle="modal" data-bs-target="#startModal">Pradėti</button>
+        <button id="start-button"
+                @auth onclick="window.location.href='/map'" @endauth
+                @guest data-bs-toggle="modal" data-bs-target="#startModal" @endguest
+                class="start-button">
+            Pradėti
+        </button>
     </div>
 </div>
 

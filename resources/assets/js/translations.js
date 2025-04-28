@@ -34,7 +34,15 @@ export const translations = {
         registerAccountButton: "Registruotis",
         accountExistLogin: "Jau turite paskyrą? Prisijunkite",
         /*------------------------------------------------------------------------------------------------------------*/
+        titleLogin: "Prisijungimas",
+        loginToAccount: "Prisijungti",
+        accountDoesNotExist: "Tokia paskyra neegzistuoja.",
+        incorrectPassword: "Netinkamas slaptažodis.",
+        loginButton: "Prisijungti",
+        noAccountRegister: "Neturite paskyros? Registruokitės",
+        /*------------------------------------------------------------------------------------------------------------*/
         title: "Kelionių planavimas",
+        loginButtonForGuests: "Prisijungti",
         startPlaceholder: "Įveskite pradžios tašką",
         endPlaceholder: "Įveskite kelionės tikslą",
         drivingChoice: "Automobiliu",
@@ -145,8 +153,16 @@ export const translations = {
         repeatPasswordMustMatchError: "Passwords do not match.",
         registerAccountButton: "Register",
         accountExistLogin: "Already have an account? Log in",
-        /*----------------------------------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------------------------*/
+        titleLogin: "Login",
+        loginToAccount: "Login",
+        accountDoesNotExist: "This account does not exist.",
+        incorrectPassword: "Incorrect password.",
+        loginButton: "Login",
+        noAccountRegister: "Don't have an account? Register",
+        /*------------------------------------------------------------------------------------------------------------*/
         title: "Travel planning",
+        loginButtonForGuests: "Login",
         startPlaceholder: "Enter starting point",
         endPlaceholder: "Enter destination point",
         drivingChoice: "By car",

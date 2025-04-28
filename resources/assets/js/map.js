@@ -74,6 +74,8 @@ export function updateTexts() {
     document.title = t.title;
     const toolbarTitle = document.getElementById("toolbar-title");
     if (toolbarTitle) {toolbarTitle.textContent = t.toolbarTitle;}
+    const toolbarLoginButton = document.getElementById("login-guest-link");
+    if (toolbarLoginButton) {toolbarLoginButton.textContent = t.loginButtonForGuests;}
     const dropdownBtn = document.querySelector('button[onclick="toggleDropdown()"]');
     if (dropdownBtn) {dropdownBtn.textContent = t.filtering;}
     const clearAllSuggestionsLink = document.querySelector("#suggested-clear-btn-row button");

@@ -29,7 +29,7 @@
             @guest
                 <div class="guest-menu">
                     @if (Request::is('map'))
-                        <a href="{{ route('login') }}" class="login-link">Prisijungti</a>
+                        <a href="{{ route('login') }}" id="login-guest-link" class="login-link">Prisijungti</a>
                     @endif
 
                     <div class="language-selector">
