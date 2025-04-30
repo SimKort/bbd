@@ -74,6 +74,10 @@ export function updateTexts() {
     document.title = t.title;
     const toolbarTitle = document.getElementById("toolbar-title");
     if (toolbarTitle) {toolbarTitle.textContent = t.toolbarTitle;}
+    const toolbarAccount = document.getElementById("accountWindowBtn");
+    if (toolbarAccount) { toolbarAccount.textContent = t.userDropdownAccount; }
+    const toolbarLogout = document.getElementById("logoutBtn");
+    if (toolbarLogout) { toolbarLogout.textContent = t.userDropdownLogout; }
     const toolbarLoginButton = document.getElementById("login-guest-link");
     if (toolbarLoginButton) {toolbarLoginButton.textContent = t.loginButtonForGuests;}
     const dropdownBtn = document.querySelector('button[onclick="toggleDropdown()"]');

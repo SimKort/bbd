@@ -64,6 +64,10 @@ window.addEventListener('DOMContentLoaded', () => {
 function toggleUserDropdown() {
     const dropdown = document.getElementById('user-dropdown');
     if (dropdown) {
+        const dropdownUser = document.getElementById('user-dropdown');
+        if (dropdownUser){
+            dropdownUser.classList.remove('show');
+        }
         dropdown.classList.toggle('show');
     }
 }

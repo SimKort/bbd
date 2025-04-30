@@ -1,6 +1,8 @@
 export const translations = {
     lt: {
         toolbarTitle: "🌍 Kelionių planavimo įrankis",
+        userDropdownAccount: "Paskyra",
+        userDropdownLogout: "Atsijungti",
         /*------------------------------------------------------------------------------------------------------------*/
         titleWelcome: "Titulinis puslapis",
         smallTitle: "Kelionių planavimo įrankis",
@@ -40,6 +42,19 @@ export const translations = {
         incorrectPassword: "Netinkamas slaptažodis.",
         loginButton: "Prisijungti",
         noAccountRegister: "Neturite paskyros? Registruokitės",
+        /*------------------------------------------------------------------------------------------------------------*/
+        titleAccount: "Paskyros nustatymai",
+        accountTitle: "Paskyros informacija",
+        currentPassword: "Dabartinis slaptažodis",
+        incorrectCurrentPassword: "Įrašytas slaptažodis yra neteisingas",
+        newPassword: "Naujas slaptažodis",
+        repeatNewPassword: "Pakartoti naują slaptažodį",
+        updateButton: "Atnaujinti paskyros duomenis",
+        deleteAccountButton: "Ištrinti paskyrą",
+        deleteAccountModalLabel: "Ar tikrai norite ištrinti paskyrą?",
+        deleteAccountText: "Šis veiksmas negali būti atšauktas. Visi jūsų duomenys bus prarasti.",
+        deleteAccountConfirm: "Taip, ištrinti",
+        deleteAccountCancel: "Atšaukti",
         /*------------------------------------------------------------------------------------------------------------*/
         title: "Kelionių planavimas",
         loginButtonForGuests: "Prisijungti",
@@ -121,6 +136,8 @@ export const translations = {
     },
     en: {
         toolbarTitle: "🌍 Travel planning tool",
+        userDropdownAccount: "Account",
+        userDropdownLogout: "Logout",
         /*------------------------------------------------------------------------------------------------------------*/
         titleWelcome: "Index page",
         smallTitle: "Travel planning tool",
@@ -160,6 +177,19 @@ export const translations = {
         incorrectPassword: "Incorrect password.",
         loginButton: "Login",
         noAccountRegister: "Don't have an account? Register",
+        /*------------------------------------------------------------------------------------------------------------*/
+        titleAccount: "Account Settings",
+        accountTitle: "Account information",
+        currentPassword: "Current Password",
+        incorrectCurrentPassword: "The password you entered is incorrect",
+        newPassword: "New Password",
+        repeatNewPassword: "Repeat New Password",
+        updateButton: "Update Account Details",
+        deleteAccountButton: "Delete Account",
+        deleteAccountModalLabel: "Are you sure you want to delete your account?",
+        deleteAccountText: "This action cannot be undone. All of your data will be lost.",
+        deleteAccountConfirm: "Yes, delete",
+        deleteAccountCancel: "Cancel",
         /*------------------------------------------------------------------------------------------------------------*/
         title: "Travel planning",
         loginButtonForGuests: "Login",

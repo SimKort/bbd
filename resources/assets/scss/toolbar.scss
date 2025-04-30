@@ -49,8 +49,9 @@
         }
         .dropdown {
             position: absolute;
+            font-size: 14px;
             top: 120%;
-            right: 0;
+            right: -20px;
             background: white;
             color: black;
             border: 1px solid #ccc;
@@ -60,7 +61,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.15);
             z-index: 2001;
             div {
-                padding: 8px 12px;
+                padding: 8px 10px;
                 cursor: pointer;
                 &:hover {
                     background: #eee;
@@ -79,9 +80,11 @@
 }
 .user-menu {
     display: flex;
+    position: relative;
     align-items: center;
     gap: 20px;
     .user-button {
+        font-family: 'Poppins', sans-serif;
         background: none;
         border: none;
         color: #f4f1ee;
@@ -98,19 +101,20 @@
     }
     .dropdown {
         position: absolute;
+        right: 50px;
         top: 120%;
-        right: 0;
         background: white;
         color: black;
         border: 1px solid #ccc;
-        border-radius: 8px;
+        border-radius: 4px;
         min-width: 120px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         display: none;
         flex-direction: column;
         z-index: 2001;
         .dropdown-item {
-            padding: 10px;
+            border-radius: 4px;
+            padding: 8px;
             text-align: center;
             cursor: pointer;
             background: none;

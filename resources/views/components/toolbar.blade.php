@@ -1,5 +1,6 @@
 <header class="toolbar">
     <div class="toolbar-content">
+
         <a href="/" id="toolbar-title" class="logo">🌍 Kelionių planavimo įrankis</a>
         <div class="toolbar-actions">
             @auth
@@ -10,14 +11,20 @@
                     </button>
 
                     <div id="user-dropdown" class="dropdown">
+                        <form id="account-form-button" action="{{ route('account.edit') }}" method="GET">
+                            @csrf
+                            <button id="accountWindowBtn" type="submit" class="dropdown-item">Paskyra</button>
+                        </form>
+
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <button type="submit" class="dropdown-item">Atsijungti</button>
+                            <button id="logoutBtn" type="submit" class="dropdown-item">Atsijungti</button>
                         </form>
                     </div>
 
                     <div class="language-selector">
                         <button id="current-language" onclick="toggleLanguageDropdown()">Lt</button>
+
                         <div id="language-dropdown" class="dropdown">
                             <div id="lang-lt" onclick="setLanguage('lt')">Lietuvių</div>
                             <div id="lang-en" onclick="setLanguage('en')">English</div>
@@ -34,6 +41,7 @@
 
                     <div class="language-selector">
                         <button id="current-language" onclick="toggleLanguageDropdown()">Lt</button>
+
                         <div id="language-dropdown" class="dropdown">
                             <div id="lang-lt" onclick="setLanguage('lt')">Lietuvių</div>
                             <div id="lang-en" onclick="setLanguage('en')">English</div>

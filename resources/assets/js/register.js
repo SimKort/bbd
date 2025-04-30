@@ -9,6 +9,10 @@ export function updateTexts() {
     document.title = t.titleRegistration;
     const toolbarTitle = document.getElementById("toolbar-title");
     if (toolbarTitle) {toolbarTitle.textContent = t.toolbarTitle;}
+    const toolbarAccount = document.getElementById("accountWindowBtn");
+    if (toolbarAccount) { toolbarAccount.textContent = t.userDropdownAccount; }
+    const toolbarLogout = document.getElementById("logoutBtn");
+    if (toolbarLogout) { toolbarLogout.textContent = t.userDropdownLogout; }
     const createAccountTitle = document.getElementById('create-account-title');
     if (createAccountTitle) { createAccountTitle.textContent = t.createAnAccount; }
     const nameLabel = document.querySelector('label[for="name"]');
@@ -87,9 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         window.location.href = '/map';
                     }
                 }
-                catch (error) {
-                    console.error('Tinklo klaida:', error);
-                }
+                catch (error) { console.error('Tinklo klaida:', error); }
             }
         });
     }

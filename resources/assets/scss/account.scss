@@ -1,0 +1,168 @@
+/* Puslapio bendri išvaizdos nustatymai */
+body {
+    background: #cfe8bd;
+    font-family: sans-serif;
+    background-size: cover;
+    margin: 0;
+}
+/*----------------------------------------------------------------*/
+
+// Toast pranešimas apie pakeistus paskyros duomenis
+.custom-toast {
+    background: #3d8a3e;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    min-width: auto;
+    width: fit-content;
+    max-width: 280px;
+    margin-top: 40px;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.toast-container {
+    top: 1rem;
+    right: 1rem;
+    z-index: 9999;
+}
+/*----------------------------------------------------------------*/
+
+/* Paskyros duomenų keitimo formos elementai */
+.account-box {
+    margin-top: 50px;
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 90%;
+    background-color: rgba(244, 241, 238, 0.95);
+    backdrop-filter: none;
+}
+h2 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+}
+.form-label {
+    font-weight: 600;
+}
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    input {
+        padding-right: 40px;
+    }
+    .toggle-password-btn {
+        position: absolute;
+        right: 25px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: white;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 1;
+        display: none;
+    }
+    .clear-btn {
+        position: absolute;
+        top: 50%;
+        right: 6px;
+        transform: translateY(-50%);
+        background-color: white;
+        border: none;
+        font-size: 24px;
+        color: #4f4f4f;
+        cursor: pointer;
+        opacity: 1;
+        padding: 0 4px;
+        display: none;
+        border-radius: 100%;
+    }
+    .clear-btn:hover {
+        color: #212121;
+    }
+}
+.input-wrapper input.is-invalid,
+input.is-invalid {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.error-message {
+    color: #c20027;
+    font-size: 0.9rem;
+    margin-top: 4px;
+    display: none;
+}
+.btn-primary:disabled {
+    background-color: #a3b97a;
+    border-color: #a3b97a;
+    cursor: not-allowed;
+    opacity: 0.65;
+    pointer-events: none;
+}
+.btn-primary {
+    margin-top: 12px;
+    background-color: #618b25;
+    border-color: #618b25;
+    border-radius: 12px;
+}
+.btn-primary:hover {
+    background-color: #3b5714;
+    border-color: #3b5714;
+}
+button.btn-primary:focus,
+button.btn-primary:active,
+button.btn-primary:focus:active {
+    background-color: #3b5714;
+    border-color: #3b5714;
+    box-shadow: none;
+}
+.spinner-border {
+    width: 5rem;
+    height: 5rem;
+    border-width: 0.75em;
+    border-color: #618b25 transparent #618b25 #618b25;
+}
+.btn-danger {
+    margin-top: 0;
+    background-color: #c20027;
+    border-color: #c20027;
+    border-radius: 12px;
+    width: 170px;
+}
+.btn-danger:hover {
+    background-color: #8a001c;
+    border-color: #8a001c;
+}
+.modal-title{
+    font-weight: 600;
+}
+.modal-footer{
+    justify-content: center;
+    gap: 40px;
+}
+#deleteAccountConfirm {
+    border-radius: 6px;
+    width: 110px;
+    background-color: #d9534f;
+    color: white;
+}
+#deleteAccountConfirm:hover {
+    background-color: #ad3632;
+}
+#deleteAccountCancel {
+    border-radius: 6px;
+    width: 110px;
+    background-color: #6c757d;
+    color: white;
+}
+#deleteAccountCancel:hover {
+    background-color: #535b61;
+}
+/*----------------------------------------------------------------*/

@@ -1,4 +1,4 @@
-import { updateTexts } from "./welcome";
+import { updateTexts } from "./account";
 
 export let currentLanguage = localStorage.getItem('preferredLang') || 'lt';
 
@@ -18,13 +18,11 @@ window.toggleLanguageDropdown = toggleLanguageDropdown;
 // Kalbos pasirinkimo nustatymo funkcija
 function setLanguage(lang) {
     localStorage.setItem('preferredLang', lang);
-    updateLanguageUI(lang);
-    hideLanguageDropdown();
-    updateTexts();
+    location.reload();
 }
 window.setLanguage = setLanguage;
 
-// UI kalbos atnaujinimo pagal pasirinktą kalbą funkcija.
+// UI kalbos atnaujinimo pagal pasirinktą kalbą funkcija
 function updateLanguageUI(lang) {
     const currentLangElement = document.getElementById('current-language');
     if (currentLangElement){
@@ -48,7 +46,7 @@ function hideLanguageDropdown() {
     }
 }
 
-// Kalbos pasirinkimo išskleidžiamojo meniu uždarymas, paspaudus už jo ribų
+// Kalbos pasirinkimo išskleidžiamojo meniu uždarymas paspaudus už ribų
 document.addEventListener('click', (e) => {
     if (!e.target.closest('.language-selector')) {
         const dropdown = document.getElementById('language-dropdown');
@@ -58,10 +56,12 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Nustato kalbą pagal išsaugotą reikšmę iš localStorage (arba naudoja esamą, jei nėra)
+// Puslapio įkrovimo metu pritaikoma kalba
 window.addEventListener('DOMContentLoaded', () => {
     const storedLang = localStorage.getItem('preferredLang') || 'lt';
-    setLanguage(storedLang);
+    updateLanguageUI(storedLang);
+    hideLanguageDropdown();
+    updateTexts();
 });
 
 // Paskyros išskleidžiamojo meniu parodymo funkcija

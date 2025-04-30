@@ -6,6 +6,10 @@ export let currentLanguage = localStorage.getItem('preferredLang') || 'lt';
 export function toggleLanguageDropdown() {
     const dropdown = document.getElementById('language-dropdown');
     if (dropdown) {
+        const dropdownUser = document.getElementById('user-dropdown');
+        if (dropdownUser){
+            dropdownUser.classList.remove('show');
+        }
         dropdown.classList.toggle('show');
     }
 }

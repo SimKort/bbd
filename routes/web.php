@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\AccountController;
 
 // Pradinis puslapis (welcome)
 Route::get('/', function () {
@@ -35,6 +36,34 @@ Route::post('/check-login', function (Illuminate\Http\Request $request) {
     if (!Hash::check($request->password, $user->password)) { return response()->json(['exists' => true, 'passwordCorrect' => false]); }
     return response()->json(['exists' => true, 'passwordCorrect' => true]);
 });
+
+// Paskyros duomenų keitimui
+Route::middleware(['auth'])->group(function () {
+    Route::get('/account', [AccountController::class, 'edit'])->name('account.edit');
+    Route::post('/account', [AccountController::class, 'update'])->name('account.update');
+    Route::delete('/account', [AccountController::class, 'destroy'])->name('account.destroy');
+});
+
+// Patikrinti ar naujas vartotojo vardas jau užimtas (išskyrus dabartinį vartotoją)
+Route::post('/check-name-edit', function (Request $request) {
+    $exists = DB::table('users')
+        ->where('name', $request->name)
+        ->where('id', '!=', auth()->id())
+        ->exists();
+    return response()->json(['exists' => $exists]);
+})->middleware('auth');
+
+// Patikrinti ar naujas el. paštas jau užimtas (išskyrus dabartinį vartotoją)
+Route::post('/check-email-edit', function (Request $request) {
+    $exists = DB::table('users')
+        ->where('email', $request->email)
+        ->where('id', '!=', auth()->id())
+        ->exists();
+    return response()->json(['exists' => $exists]);
+})->middleware('auth');
+
+// Patikrinti ar įvestas esamas slaptažodis yra tinkamas
+Route::post('/check-current-password', [AccountController::class, 'checkCurrentPassword']);
 
 // Žemėlapio puslapis
 Route::get('/map', [MapController::class, 'showMap'])->name('map');

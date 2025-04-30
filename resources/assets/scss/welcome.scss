@@ -110,3 +110,26 @@ body {
     font-weight: 600;
 }
 /*----------------------------------------------------------------*/
+
+// Toast pranešimas apie ištrintą paskyrą
+.custom-toast {
+    background: #3d8a3e;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    min-width: auto;
+    width: fit-content;
+    max-width: 280px;
+    margin-top: 40px;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.toast-container {
+    top: 1rem;
+    right: 1rem;
+    z-index: 9999;
+}

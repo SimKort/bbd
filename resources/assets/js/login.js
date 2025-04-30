@@ -9,6 +9,10 @@ export function updateTexts() {
     document.title = t.titleLogin;
     const toolbarTitle = document.getElementById("toolbar-title");
     if (toolbarTitle) { toolbarTitle.textContent = t.toolbarTitle; }
+    const toolbarAccount = document.getElementById("accountWindowBtn");
+    if (toolbarAccount) { toolbarAccount.textContent = t.userDropdownAccount; }
+    const toolbarLogout = document.getElementById("logoutBtn");
+    if (toolbarLogout) { toolbarLogout.textContent = t.userDropdownLogout; }
     const loginTitle = document.getElementById('login-title');
     if (loginTitle) { loginTitle.textContent = t.loginToAccount; }
     const emailLabel = document.querySelector('label[for="email"]');
@@ -67,17 +71,9 @@ document.addEventListener("DOMContentLoaded", function() {
                             redirect: "follow"
                         });
                         if (response.ok) { window.location.href = '/map'; }
-                        else {
-                            console.error('Serverio atsakymas ne OK.');
-                            form.style.opacity = "1";
-                            document.getElementById('loading-spinner').style.display = 'none';
-                        }
+                        else { console.error('Serverio atsakymas ne OK.'); }
                     }
-                    catch (error) {
-                        console.error('Tinklo klaida:', error);
-                        form.style.opacity = "1";
-                        document.getElementById('loading-spinner').style.display = 'none';
-                    }
+                    catch (error) { console.error('Tinklo klaida:', error); }
                 }
                 else {
                     form.style.opacity = "1";

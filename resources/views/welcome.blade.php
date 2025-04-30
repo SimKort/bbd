@@ -12,6 +12,17 @@
 
 <body>
 @include('components.toolbar')
+
+@if (session('success'))
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+        <div id="statusToast" class="toast show custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex align-items-center p-2">
+                <div class="flex-grow-1" id="toast-message"></div>
+            </div>
+        </div>
+    </div>
+@endif
+
 <div class="d-flex justify-content-center align-items-center min-vh-100">
     <div class="hero-box">
         <h1 id="small-title" class="mb-3 fs-3">Kelionių planavimo įrankis</h1>
@@ -45,6 +56,24 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toastEl = document.getElementById('statusToast');
+        const toastMessageEl = document.getElementById('toast-message');
+        const lang = localStorage.getItem('preferredLang') || 'lt';
+        const translations = {
+            lt: { toastSuccessDeletion: 'Paskyra sėkmingai ištrinta.' },
+            en: { toastSuccessDeletion: 'Account deleted successfully.' }
+        };
+        if (toastEl && toastMessageEl) {
+            toastMessageEl.textContent = translations[lang].toastSuccessDeletion;
+            const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+            toast.show();
+        }
+    });
+</script>
+
 <script src="{{ mix('js/toolbar_language_welcome.js') }}"></script>
 
 </body>
