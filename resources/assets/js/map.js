@@ -11,6 +11,7 @@ import './map_information_window';
 import './map_trip_places';
 import "./map_price_popup";
 import "./map_fuel_price";
+import "./map_trip_saving";
 
 export let map, directionsService, directionsRenderer, placesService, infoWindow;
 let startAutocomplete, endAutocomplete, customAutocomplete;
@@ -23,6 +24,8 @@ export function updateTexts() {
         modeOptions[0].textContent = t.drivingChoice;
         modeOptions[1].textContent = t.walkingChoice;
     }
+    const toolbarSavedRoutes = document.getElementById("saved-routes2");
+    if (toolbarSavedRoutes) { toolbarSavedRoutes.textContent = t.savedRoutesList; }
     const startInput = document.getElementById("start");
     if (startInput) {startInput.placeholder = t.startPlaceholder;}
     const endInput = document.getElementById("end");
@@ -133,6 +136,14 @@ export function updateTexts() {
     if (saveFuelBtn) saveFuelBtn.textContent = fuelT.fuel_button_save;
     const cancelFuelBtn = document.getElementById("cancel-fuel");
     if (cancelFuelBtn) cancelFuelBtn.textContent = fuelT.fuel_button_cancel;
+    const saveTripPlanBtn = document.getElementById("saveTripPlan");
+    if (saveTripPlanBtn) { saveTripPlanBtn.textContent = t.save_trip_plan; }
+    const saveTripPlanTitle = document.getElementById("tripTitle");
+    if (saveTripPlanTitle) { saveTripPlanTitle.textContent = t.save_trip_plan_title; }
+    const saveTripPlanBtnConfirm = document.getElementById("confirm-trip-title");
+    if (saveTripPlanBtnConfirm) { saveTripPlanBtnConfirm.textContent = t.save_trip_plan_confirm; }
+    const saveTripPlanBtnCancel = document.getElementById("cancel-trip-title");
+    if (saveTripPlanBtnCancel) { saveTripPlanBtnCancel.textContent = t.save_trip_plan_cancel; }
     renderTripPlan();
 }
 

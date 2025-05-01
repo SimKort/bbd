@@ -11,6 +11,8 @@ export function updateTexts() {
     document.title = t.titleAccount;
     const toolbarTitle = document.getElementById("toolbar-title");
     if (toolbarTitle) { toolbarTitle.textContent = t.toolbarTitle; }
+    const toolbarSavedRoutes = document.getElementById("saved-routes1");
+    if (toolbarSavedRoutes) { toolbarSavedRoutes.textContent = t.savedRoutesList; }
     const toolbarAccount = document.getElementById("accountWindowBtn");
     if (toolbarAccount) { toolbarAccount.textContent = t.userDropdownAccount; }
     const toolbarLogout = document.getElementById("logoutBtn");

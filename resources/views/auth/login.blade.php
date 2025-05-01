@@ -3,6 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="data:image/svg+xml,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 100'>
+<text x='10' y='90' font-size=%2290%22>🌍</text></svg>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prisijungimas</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">

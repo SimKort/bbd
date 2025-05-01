@@ -75,7 +75,7 @@ body {
 }
 #mode {
     min-width: 115px;
-    accent-color: #618B25;
+    accent-color: #618b25;
 }
 .filter-wrapper {
     position: relative;
@@ -117,7 +117,7 @@ body {
     }
 }
 input[type="checkbox"] {
-    accent-color: #618B25;
+    accent-color: #618b25;
 }
 #place-type-dropdown {
     display: none;
@@ -128,7 +128,7 @@ input[type="checkbox"] {
     background: white;
     border: 1px solid #cccccc;
     padding: 10px;
-    width: 220px;
+    width: 245px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 .rating-label,
@@ -479,7 +479,7 @@ input[type="checkbox"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4px 0 4px 0;
+    padding: 12px 0 12px 0;
     border-radius: 0 0 4px 4px;
     font-size: 14px;
     margin: 0;
@@ -504,7 +504,7 @@ input[type="checkbox"] {
         margin: 0 6px;
         white-space: nowrap;
         strong {
-            color: #618B25;
+            color: #618b25;
         }
     }
 }
@@ -1133,6 +1133,38 @@ input[type="checkbox"] {
 }
 #bottom-info span strong {
     color: #a44200;
+}
+.save-trip-button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.save-trip-btn {
+    background-color: #618b25;
+    color: white;
+    font-weight: 600;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.save-trip-btn:hover {
+    background-color: #3b5714;
+}
+#confirm-trip-title {
+    background-color: #618b25;
+    color: white;
+}
+#confirm-trip-title:hover {
+    background-color: #3b5714;
+}
+#cancel-trip-title {
+    background-color: #6c757d;
+    color: white;
+}
+#cancel-trip-title:hover {
+    background-color: #535b61;
 }
 /*----------------------------------------------------------------*/
 

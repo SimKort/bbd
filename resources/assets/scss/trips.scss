@@ -1,0 +1,114 @@
+/* Puslapio bendri išvaizdos nustatymai */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: url("../images/background_trips.png") no-repeat center center fixed;
+    background-size: cover;
+}
+/*----------------------------------------------------------------*/
+
+// Toast pranešimas apie išsaugotą kelionės planą
+.custom-toast {
+    background: #3d8a3e;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    min-width: auto;
+    width: fit-content;
+    max-width: 280px;
+    margin-top: 40px;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.toast-container {
+    top: 1rem;
+    right: 1rem;
+    z-index: 9999;
+}
+/*----------------------------------------------------------------*/
+
+/* Prisijungimo formos elementai */
+.container {
+    max-width: 900px;
+    margin: 50px auto auto auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 5px 40px 20px 40px;
+    border-radius: 10px;
+}
+h1{
+    font-size: 1.8em;
+    padding-top: 0;
+}
+.trip-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: rgba(244, 241, 238, 0.8);
+}
+.trip-card p {
+    margin: 4px 0;
+}
+.trip-card h3 {
+    margin-top: 0;
+    padding-top: 0;
+    text-align: center;
+    font-size: 1.4rem;
+    color: #618b25;
+}
+.trip-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.trip-card a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+}
+.trip-card a:hover {
+    text-decoration: underline;
+}
+.trip-route-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+.trip-address {
+    max-width: 45%;
+    text-align: center;
+    word-break: break-word;
+}
+.trip-arrow {
+    font-size: 18px;
+    color: #555;
+}
+.trip-info-small {
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+.trip-stats-row {
+    display: flex;
+    justify-content: space-around;
+    font-size: 14px;
+    margin: 15px 0 0 0;
+}
+.trip-stats-row strong {
+    color: #a44200;
+}
+.trip-stats-row div {
+    color: black;
+}
+/*----------------------------------------------------------------*/

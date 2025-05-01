@@ -2,14 +2,21 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:image/svg+xml,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 100'>
+<text x='10' y='90' font-size=%2290%22>🌍</text></svg>">
     <title>Kelionių planavimas</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/toolbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/map.css') }}">
 </head>
 
 <body>
 @include('components.toolbar')
+
 <div class="background-image-wrapper" style="background-image: url('{{ asset('images/map_page.png') }}');"></div>
+
 <div class="controls">
     <div class="input-wrapper">
         <input id="start" type="text" placeholder="Įveskite pradžios tašką" oninput="toggleClearButton(this)">
@@ -120,6 +127,9 @@
         <span><strong>Numatoma kelionės trukmė:</strong> <span id="duration-bottom">-</span></span> |
         <span><strong>Numatoma kelionės kaina:</strong> <span id="total-place-cost-bottom">0 €</span></span>
     </div>
+    <div class="save-trip-button-wrapper">
+        <button id="saveTripPlan" class="save-trip-btn" onclick="saveTrip()">💾 Išsaugoti kelionės maršrutą</button>
+    </div>
 </div>
 
 <div id="fuel-cost-modal" class="confirm-modal">
@@ -170,6 +180,17 @@
         <div class="confirm-buttons">
             <button id="confirm-delete">Taip</button>
             <button id="cancel-delete">Atšaukti</button>
+        </div>
+    </div>
+</div>
+
+<div id="trip-title-modal" class="confirm-modal">
+    <div class="confirm-modal-content">
+        <p id="tripTitle"> Įveskite kelionės pavadinimą:</p>
+        <input id="trip-title-input" type="text" style="width: 100%; padding: 8px; margin-top: 10px;">
+        <div class="confirm-buttons" style="margin-top: 20px;">
+            <button id="confirm-trip-title">Išsaugoti</button>
+            <button id="cancel-trip-title">Atšaukti</button>
         </div>
     </div>
 </div>

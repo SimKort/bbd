@@ -6,8 +6,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Http\Controllers\MapController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\MapController;
+use App\Http\Controllers\TripController;
 
 // Pradinis puslapis (welcome)
 Route::get('/', function () {
@@ -67,3 +68,15 @@ Route::post('/check-current-password', [AccountController::class, 'checkCurrentP
 
 // Žemėlapio puslapis
 Route::get('/map', [MapController::class, 'showMap'])->name('map');
+
+// Kelionės planų išsaugojimui
+Route::post('/trips', [TripController::class, 'store'])->middleware('auth');
+
+// Kelionių planų puslapiui
+Route::get('/trips', [TripController::class, 'index'])->middleware('auth')->name('trips.index');
+
+
+
+Route::get('/trips/{id}', [TripController::class, 'show'])->middleware('auth')->name('trips.show');
+
+Route::get('/api/trips/{id}', [TripController::class, 'getTripData'])->middleware('auth');

@@ -32,6 +32,44 @@
         color: white;
         text-decoration: none;
     }
+    .saved-routes-button {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        .saved-routes-link {
+            background-color: #618b25;
+            color: #f5e6d5;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+            border-bottom: 2px solid #f5e6d5;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+            &:hover {
+                background-color: #618b25;
+                color: #c9bbab;
+                border-bottom: 2px solid #c9bbab;
+            }
+        }
+    }
+    .new-route-button {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        .new-route-link {
+            background-color: #618b25;
+            color: #f5e6d5;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+            border-bottom: 2px solid #f5e6d5;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+            &:hover {
+                background-color: #618b25;
+                color: #c9bbab;
+                border-bottom: 2px solid #c9bbab;
+            }
+        }
+    }
     .language-selector {
         font-family: sans-serif;
         position: relative;

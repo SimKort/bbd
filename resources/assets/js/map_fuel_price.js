@@ -3,7 +3,7 @@ import { translations } from './translations';
 import { setFuelModalShown } from './map_route_creation';
 import { totalObjectCost } from './map_price_popup';
 
-let fuelConsumption = 6, fuelPrices = {}, startCountryCode = null, fuelType = "gasoline", userFuelPrice = null, totalFuelCost = 0;
+let fuelConsumption = 6, fuelPrices = {}, startCountryCode = null, fuelType = "gasoline", userFuelPrice = null, totalFuelCost = 0, fuelModalWasConfirmed = false;
 
 // Užkrauname degalų kainas iš JSON failo
 fetch('/data/fuel_prices.json')
@@ -40,6 +40,7 @@ window.addEventListener("DOMContentLoaded", () => {
             fuelConsumption = input;
             fuelType = fuelTypeRadio?.value || "gasoline";
             userFuelPrice = inputTypeRadio?.value === "custom" && !isNaN(customPrice) ? customPrice : null;
+            fuelModalWasConfirmed = true;
             updateFuelCost();
             document.getElementById("fuel-cost-modal").style.display = "none";
         }
@@ -92,6 +93,7 @@ document.getElementById("confirm-fuel").onclick = () => {
         fuelConsumption = input;
         fuelType = fuelTypeRadio?.value || "gasoline";
         userFuelPrice = inputTypeRadio?.value === "custom" && !isNaN(customPrice) ? customPrice : null;
+        fuelModalWasConfirmed = true;
         updateFuelCost();
         document.getElementById("fuel-cost-modal").style.display = "none";
     }
@@ -170,3 +172,19 @@ document.querySelectorAll('input[name="fuel-type"]').forEach(radio => {
         updateTooltipText();
     });
 });
+
+// Degalų duomenų išsaugojimo funkcija
+export function getFuelData() {
+    if (!fuelModalWasConfirmed) {
+        return {
+            fuel_type: null,
+            fuel_price: null,
+            fuel_consumption: null,
+        };
+    }
+    return {
+        fuel_type: fuelType,
+        fuel_price: userFuelPrice ?? (fuelPrices[startCountryCode]?.[fuelType] ?? null),
+        fuel_consumption: fuelConsumption,
+    };
+}

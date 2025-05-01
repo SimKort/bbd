@@ -1,7 +1,25 @@
 <header class="toolbar">
     <div class="toolbar-content">
-
         <a href="/" id="toolbar-title" class="logo">🌍 Kelionių planavimo įrankis</a>
+
+        @if (Auth::check() && Request::is('account*'))
+            <div class="saved-routes-button">
+                <a href="{{ route('trips.index') }}" id="saved-routes1" class="saved-routes-link">💾 išsaugoti maršrutai 💾</a>
+            </div>
+        @endif
+
+        @if (Auth::check() && Request::is('map'))
+            <div class="saved-routes-button">
+                <a href="{{ route('trips.index') }}" id="saved-routes2" class="saved-routes-link">💾 išsaugoti maršrutai 💾</a>
+            </div>
+        @endif
+
+        @if (Auth::check() && Request::is('trips*'))
+        <div class="new-route-button">
+                <a href="{{ route('map') }}" id="new-route" class="new-route-link">➕ naujas kelionės planas ➕</a>
+            </div>
+        @endif
+
         <div class="toolbar-actions">
             @auth
                 <div class="user-menu">

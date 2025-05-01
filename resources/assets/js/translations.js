@@ -43,6 +43,7 @@ export const translations = {
         loginButton: "Prisijungti",
         noAccountRegister: "Neturite paskyros? Registruokitės",
         /*------------------------------------------------------------------------------------------------------------*/
+        savedRoutesList: "💾 išsaugoti maršrutai 💾",
         titleAccount: "Paskyros nustatymai",
         accountTitle: "Paskyros informacija",
         currentPassword: "Dabartinis slaptažodis",
@@ -132,7 +133,23 @@ export const translations = {
         fuel_button_cancel: "Atšaukti",
         fuel_tooltip_price_not_found: "Jūsų pradžios taško valstybės vidutinė degalų kaina nerasta.",
         fuel_tooltip_with_data: (type, countryCode, price) => `Apytikslės kainos nustatymui bus naudojama vidutinė šio degalų tipo kaina valstybėje, kurioje prasidės jūsų kelionė. Esama ${type === "diesel" ? "dyzelino" : "benzino"} kaina ${countryCode} valstybėje yra ~${price} €.`,
-        fuel_tooltip_not_found: "Deja, nepavyko rasti vidutinės šio degalų tipo kainos valstybėje, kurioje prasidės jūsų kelionė."
+        fuel_tooltip_not_found: "Deja, nepavyko rasti vidutinės šio degalų tipo kainos valstybėje, kurioje prasidės jūsų kelionė.",
+        save_trip_plan: "💾 Išsaugoti kelionės maršrutą",
+        save_trip_plan_title: "Įveskite kelionės pavadinimą:",
+        save_trip_plan_input: "Mano kelionė",
+        save_trip_plan_input_error: "Įveskite kelionės pavadinimą.",
+        save_trip_plan_confirm: "Išsaugoti",
+        save_trip_plan_cancel: "Atšaukti",
+        /*------------------------------------------------------------------------------------------------------------*/
+        tittleTrips: "Mano kelionės",
+        newRouteLink: "➕ naujas kelionės planas ➕",
+        my_trips_title: "🧳 Mano kelionės",
+        my_trips_empty_list: "Jūs dar neišsaugojote jokių kelionės planų.",
+        my_trips_places: "(Lankytinos vietos: __COUNT__)",
+        my_trips_distance: "Maršruto atstumas:",
+        my_trips_travel_time: "Maršruto kelionės trukmė:",
+        my_trips_price: "Apytikslė bendra kaina:",
+        my_trips_more_details: "👁️ Peržiūrėti"
     },
     en: {
         toolbarTitle: "🌍 Travel planning tool",
@@ -178,6 +195,7 @@ export const translations = {
         loginButton: "Login",
         noAccountRegister: "Don't have an account? Register",
         /*------------------------------------------------------------------------------------------------------------*/
+        savedRoutesList: "💾 saved routes 💾",
         titleAccount: "Account Settings",
         accountTitle: "Account information",
         currentPassword: "Current Password",
@@ -267,6 +285,22 @@ export const translations = {
         fuel_button_cancel: "Cancel",
         fuel_tooltip_price_not_found: "The average fuel price for your starting point country was not found.",
         fuel_tooltip_with_data: (type, countryCode, price) => `An approximate fuel price will be used based on the country where your trip starts. An approximate ${type === "diesel" ? "diesel" : "gasoline"} price in ${countryCode} is ~${price} €.`,
-        fuel_tooltip_not_found: "Could not find a fuel price for the selected type and country."
+        fuel_tooltip_not_found: "Could not find a fuel price for the selected type and country.",
+        save_trip_plan: "💾 Save trip plan",
+        save_trip_plan_title: "Enter trip title:",
+        save_trip_plan_input: "My trip",
+        save_trip_plan_input_error: "Please enter the name.",
+        save_trip_plan_confirm: "Save",
+        save_trip_plan_cancel: "Cancel",
+        /*------------------------------------------------------------------------------------------------------------*/
+        tittleTrips: "My trips",
+        newRouteLink: "➕ new trip plan ➕",
+        my_trips_title: "🧳 My trips",
+        my_trips_empty_list: "You have not saved any trip plans yet.",
+        my_trips_places: "(Places to visit: __COUNT__)",
+        my_trips_distance: "Route distance:",
+        my_trips_travel_time: "Route travel time:",
+        my_trips_price: "Approximate total price:",
+        my_trips_more_details: "👁️ View"
     }
 };

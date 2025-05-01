@@ -51,7 +51,9 @@ function attachPricePopupEvents(popup, place) {
     const input = popup.querySelector("input");
     const closeButton = popup.querySelector(".close-button");
     saveButton.onclick = () => {
-        place.cost = parseFloat(input.value) || 0;
+        const newCost = parseFloat(input.value) || 0;
+        place.cost = newCost;
+        place.price = newCost;
         updateTotalPlaceCost();
         renderTripPlan();
         removeCurrentPricePopup();

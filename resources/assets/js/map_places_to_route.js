@@ -40,6 +40,10 @@ function ensureMarkerExists(place) {
 function addPlaceToWaypoints(place, marker) {
     const copiedPlace = {
         ...place,
+        lat: place.location?.lat?.(),
+        lng: place.location?.lng?.(),
+        price: place.cost || 0,
+        type: place.type || "tourist_attraction",
         marker: marker,
         website: place.website,
         address: place.address

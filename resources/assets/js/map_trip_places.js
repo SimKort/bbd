@@ -74,6 +74,10 @@ function renderTripPoint(name, address, icon, label, className) {
 function renderTripItem(place, i) {
     const li = document.createElement("li");
     li.classList.add("trip-plan-item");
+    li.dataset.placeId = place.place_id;
+    li.dataset.lat = place.lat;
+    li.dataset.lng = place.lng;
+    li.dataset.price = place.cost ?? place.price ?? 0;
     const content = document.createElement("div");
     content.className = "plan-content";
     const row = document.createElement("div");
@@ -84,10 +88,18 @@ function renderTripItem(place, i) {
     row.appendChild(actions);
     content.appendChild(row);
     if (place.address) {
-        const addressRow = createTripItemAddress(place);
+        const addressRow = document.createElement("div");
+        addressRow.className = "plan-address-row";
+        const address = document.createElement("div");
+        address.className = "trip-place-address";
+        address.textContent = place.address;
+        const mapInfo = document.createElement("button");
+        mapInfo.className = "map-info-link";
+        mapInfo.textContent = translations[currentLanguage].seeOnMap;
+        mapInfo.onclick = () => scrollToMapAndShowInfo(place);
+        addressRow.appendChild(address);
+        addressRow.appendChild(mapInfo);
         content.appendChild(addressRow);
-
-        const mapInfo = addressRow.querySelector(".map-info-link");
         li.onmouseenter = () => mapInfo.style.opacity = "1";
         li.onmouseleave = () => mapInfo.style.opacity = "0";
     }
@@ -101,7 +113,7 @@ function createTripItemLeft(place, i) {
     left.className = "place-left";
     const icon = placeTypeIcons[place.type] || "📍";
     const nameSpan = document.createElement("span");
-    nameSpan.className = "place-name";
+    nameSpan.className = "place-name trip-place-name";
     nameSpan.textContent = place.name;
     if (place.website) {
         const priceBtn = document.createElement("button");
@@ -137,22 +149,6 @@ function createTripItemActions(place) {
     deleteWrapper.appendChild(tooltip);
     actions.appendChild(deleteWrapper);
     return actions;
-}
-
-// Adreso eilutės su mygtuku „Informacija žemėlapyje“ sukūrimo funkcija
-function createTripItemAddress(place) {
-    const row = document.createElement("div");
-    row.className = "plan-address-row";
-    const address = document.createElement("div");
-    address.className = "plan-address";
-    address.textContent = place.address;
-    const mapInfo = document.createElement("button");
-    mapInfo.className = "map-info-link";
-    mapInfo.textContent = translations[currentLanguage].seeOnMap;
-    mapInfo.onclick = () => scrollToMapAndShowInfo(place);
-    row.appendChild(address);
-    row.appendChild(mapInfo);
-    return row;
 }
 
 // Paslinkimo iki žemėlapio ir informacinio langelio parodymo funkcija
