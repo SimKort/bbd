@@ -158,8 +158,8 @@ export const translations = {
         saved_trip_plan_end: "Pabaigos taškas:",
         saved_trp_map_title: "Kelionės žemėlapis:",
         saved_trip_plan_distance: "Atstumas:",
-        saved_trip_plan_time: "Numatoma kelionės trukmė:",
-        saved_trip_plan_price: "Numatoma kelionės kaina:",
+        saved_trip_plan_time: "Numatoma trukmė:",
+        saved_trip_plan_price: "Numatoma kaina:",
         /*------------------------------------------------------------------------------------------------------------*/
     },
     en: {
@@ -317,12 +317,12 @@ export const translations = {
         saved_trip_back_button: "← Back to my trips",
         saved_trip_edit_button: "✏️ Edit",
         saved_trp_plan_title: "Trip Plan:",
-        save_trip_plan_start: "Start location:",
-        save_trip_plan_end: "End location:",
+        saved_trip_plan_start: "Start location:",
+        saved_trip_plan_end: "End location:",
         saved_trp_map_title: "Trip Map:",
         saved_trip_plan_distance: "Distance:",
-        saved_trip_plan_time: "Estimated trip time:",
-        saved_trip_plan_price: "Estimated trip price:",
+        saved_trip_plan_time: "Estimated time:",
+        saved_trip_plan_price: "Estimated price:",
         /*------------------------------------------------------------------------------------------------------------*/
     }
 };

@@ -12,6 +12,13 @@
     <link rel="stylesheet" href="{{ asset('css/show.css') }}">
 </head>
 
+@php
+    use Carbon\CarbonInterval;
+    $durationFormatted = $trip->duration >= 60
+        ? CarbonInterval::minutes($trip->duration)->cascade()->forHumans(['join' => true, 'short' => true, 'parts' => 2])
+        : $trip->duration . ' min';
+@endphp
+
 <body>
 @include('components.toolbar')
 
@@ -112,10 +119,14 @@
 
                 <div class="compact-info" id="map-info">
                     <span id="savedTripDistance"><strong>Atstumas:</strong> {{ $trip->distance }} km</span> |
-                    <span id="savedTripTime"><strong>Numatoma kelionės trukmė:</strong> {{ $trip->duration }} min</span> |
-                    <span id="savedTripPrice"><strong>Numatoma kelionės kaina:</strong> {{ $trip->price_total }} €</span>
+                    <span id="savedTripTime"><strong>Numatoma trukmė:</strong> {{ $durationFormatted }}</span>|
+                    <span id="savedTripPrice"><strong>Numatoma kaina:</strong> {{ $trip->price_total }} €</span>
                 </div>
             </div>
+
+            <a href="{{ $trip->getGoogleMapsLink() }}" target="_blank" class="maps-link">
+                🗺️ Atidaryti Google Maps
+            </a>
         </div>
     </div>
 </div>

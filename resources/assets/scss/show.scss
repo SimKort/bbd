@@ -195,4 +195,15 @@ h3 {
 #map-info strong {
     color: #a44200;
 }
+.maps-link {
+    display: inline-block;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #007bff;
+    font-size: 15px;
+}
+.maps-link:hover {
+    text-decoration: underline;
+}
 /*----------------------------------------------------------------*/

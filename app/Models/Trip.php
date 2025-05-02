@@ -28,4 +28,20 @@ class Trip extends Model
     {
         return $this->hasMany(TripPlace::class);
     }
+
+    public function getGoogleMapsLink(): string
+    {
+        $origin = urlencode($this->start_address);
+        $destination = urlencode($this->end_address);
+        $waypointsArray = $this->places
+            ->sortBy('order')
+            ->pluck('address')
+            ->map(fn($address) => urlencode($address));
+        $waypoints = implode('|', $waypointsArray->all());
+        return "https://www.google.com/maps/dir/?api=1"
+            . "&origin={$origin}"
+            . "&destination={$destination}"
+            . ($waypoints ? "&waypoints={$waypoints}" : "")
+            . "&travelmode=" . strtolower($this->mode);
+    }
 }
