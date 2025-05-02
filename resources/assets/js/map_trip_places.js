@@ -18,6 +18,13 @@ export function setCurrentStartName(val) {
 export function setCurrentEndName(val) {
     currentEndName = val;
 }
+export function getCurrentStartName() {
+    return currentStartName;
+}
+export function getCurrentEndName() {
+    return currentEndName;
+}
+
 const placeTypeIcons = {
     tourist_attraction: "📍",
     museum: "🏛️",
@@ -57,16 +64,37 @@ window.renderTripPlan = renderTripPlan;
 // Sąrašo elemento pradžios arba pabaigos taškui sukūrimo funkcija
 function renderTripPoint(name, address, icon, label, className) {
     const li = document.createElement("li");
-    li.classList.add(className);
-    li.innerHTML = `
-    <div class="place-info">
-        <div class="place-row">
-            <span class="plan-icon">${icon}</span>
-            <span class="plan-number">${label}</span>
-            <span class="place-name">${name}</span>
-        </div>
-        ${address ? `<div class="address">${address}</div>` : ""}
-    </div>`;
+    li.classList.add("trip-plan-item", className);
+    const content = document.createElement("div");
+    content.className = "plan-content";
+    const row = document.createElement("div");
+    row.className = "place-row";
+    const left = document.createElement("div");
+    left.className = "place-left";
+    const iconEl = document.createElement("span");
+    iconEl.className = "plan-icon";
+    iconEl.textContent = icon;
+    const labelEl = document.createElement("span");
+    labelEl.className = "plan-number";
+    labelEl.textContent = label;
+    const nameEl = document.createElement("span");
+    nameEl.className = "place-name";
+    nameEl.textContent = name;
+    left.appendChild(iconEl);
+    left.appendChild(labelEl);
+    left.appendChild(nameEl);
+    row.appendChild(left);
+    content.appendChild(row);
+    if (address) {
+        const addressRow = document.createElement("div");
+        addressRow.className = "plan-address-row";
+        const addressEl = document.createElement("div");
+        addressEl.className = "plan-address";
+        addressEl.textContent = address;
+        addressRow.appendChild(addressEl);
+        content.appendChild(addressRow);
+    }
+    li.appendChild(content);
     return li;
 }
 
@@ -75,6 +103,7 @@ function renderTripItem(place, i) {
     const li = document.createElement("li");
     li.classList.add("trip-plan-item");
     li.dataset.placeId = place.place_id;
+    li.dataset.type = place.type || 'tourist_attraction';
     li.dataset.lat = place.lat;
     li.dataset.lng = place.lng;
     li.dataset.price = place.cost ?? place.price ?? 0;

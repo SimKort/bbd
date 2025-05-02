@@ -1,5 +1,7 @@
 import { translations } from './translations';
 import './map_trip_places';
+import { getStartMarker, getEndMarker } from './map_route_creation';
+import { getCurrentStartName, getCurrentEndName } from './map_trip_places';
 import { getFuelData } from './map_fuel_price';
 import {currentLanguage} from "./toolbar_language_map";
 
@@ -19,6 +21,12 @@ function saveTrip() {
 window.saveTrip = saveTrip;
 
 function continueSaveTrip(title, start, end) {
+    const startMarker = getStartMarker();
+    const endMarker = getEndMarker();
+    const startLat = startMarker?.getPosition()?.lat();
+    const startLng = startMarker?.getPosition()?.lng();
+    const endLat = endMarker?.getPosition()?.lat();
+    const endLng = endMarker?.getPosition()?.lng();
     const mode = document.getElementById("mode").value || "DRIVING";
     const distanceText = document.getElementById('distance-bottom')?.innerText.replace(' km', '') || '0';
     const durationText = document.getElementById('duration-bottom')?.innerText.replace(' min', '') || '0';
@@ -27,7 +35,8 @@ function continueSaveTrip(title, start, end) {
     const places = [];
     tripItems.forEach((item, index) => {
         const placeId = item.dataset.placeId;
-        const name = item.querySelector('.trip-place-name')?.innerText || '';
+        const name = item.querySelector('.trip-place-name')?.innerText.replace(/💶/g, '').trim() || '';
+        const type = item.dataset.type || 'tourist_attraction';
         const address = item.querySelector('.trip-place-address')?.innerText || '';
         const price = parseFloat(item.dataset.price || 0);
         const lat = parseFloat(item.dataset.lat);
@@ -36,11 +45,12 @@ function continueSaveTrip(title, start, end) {
             places.push({
                 place_id: placeId,
                 name,
+                type,
                 address,
                 price,
                 order: index + 1,
                 lat,
-                lng,
+                lng
             });
         }
     });
@@ -52,8 +62,14 @@ function continueSaveTrip(title, start, end) {
     }
     const payload = {
         title,
+        start_name: getCurrentStartName(),
         start_address: start,
+        start_lat: startLat,
+        start_lng: startLng,
+        end_name: getCurrentEndName(),
         end_address: end,
+        end_lat: endLat,
+        end_lng: endLng,
         distance: parseFloat(distanceText),
         duration: parseInt(durationText),
         price_total: parseFloat(costText),

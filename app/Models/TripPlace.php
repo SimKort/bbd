@@ -9,11 +9,12 @@ class TripPlace extends Model
     protected $fillable = [
         'place_id',
         'name',
+        'type',
         'address',
         'price',
         'order',
         'lat',
-        'lng',
+        'lng'
     ];
 
     public function trip()

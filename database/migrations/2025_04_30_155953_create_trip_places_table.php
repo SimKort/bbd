@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('trip_id')->constrained()->onDelete('cascade');
             $table->string('place_id');
+            $table->string('type')->nullable();
             $table->string('name');
             $table->string('address');
             $table->float('price')->nullable();

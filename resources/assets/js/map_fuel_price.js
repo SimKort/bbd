@@ -2,6 +2,7 @@ import { currentLanguage } from './toolbar_language_map';
 import { translations } from './translations';
 import { setFuelModalShown } from './map_route_creation';
 import { totalObjectCost } from './map_price_popup';
+import "./map_trip_places";
 
 let fuelConsumption = 6, fuelPrices = {}, startCountryCode = null, fuelType = "gasoline", userFuelPrice = null, totalFuelCost = 0, fuelModalWasConfirmed = false;
 

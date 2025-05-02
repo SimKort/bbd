@@ -5,10 +5,15 @@ import { setCurrentStart, setCurrentEnd, setCurrentStartName, setCurrentEndName,
 import { setFuelStartCountry, updateTooltip } from "./map_fuel_price";
 
 export let addedWaypoints = [];
-let currentMode = "DRIVING", walkingPolyline = null, startMarker, endMarker;
-let fuelModalShown = false;
+let currentMode = "DRIVING", walkingPolyline = null, startMarker, endMarker, fuelModalShown = false;
 export function setFuelModalShown(value) {
     fuelModalShown = value;
+}
+export function getStartMarker() {
+    return startMarker;
+}
+export function getEndMarker() {
+    return endMarker;
 }
 
 // Maršruto apskaičiavimo funkcija
@@ -121,6 +126,7 @@ function handleRouteResponse(response, status) {
     calculateAndDisplayRouteSummary(response);
     fitMapToRouteBounds(response);
     const order = response.routes[0].waypoint_order || [];
+    sortAddedWaypointsByGoogleOrder(order);
     const sortedWaypoints = order.map(index => addedWaypoints[index]);
     renderTripPlan(sortedWaypoints);
     showPlacesSection();
@@ -186,4 +192,11 @@ function fitMapToRouteBounds(response) {
 // Lankytinų vietų elemento atvaizdavimo funkcija
 function showPlacesSection() {
     document.getElementById("places-section").style.display = "block";
+}
+
+// Lankytinų vietų rūšiavimo pagal kelionės maršrutą funkcija
+export function sortAddedWaypointsByGoogleOrder(order) {
+    if (!Array.isArray(order)) return;
+    addedWaypoints = order.map(i => addedWaypoints[i]).filter(Boolean);
+    addedWaypoints.forEach((p, idx) => p.order = idx + 1);
 }

@@ -4,6 +4,7 @@ import { addedWaypoints } from "./map_route_creation";
 import { suggestedPlaces } from "./map_find_attractions";
 import { renderTripPlan } from "./map_trip_places";
 import { updateTotalCombinedCost } from './map_fuel_price';
+
 export let totalObjectCost = 0;
 let currentPricePopup = null;
 

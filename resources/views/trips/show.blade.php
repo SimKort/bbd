@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="lt">
+
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="data:image/svg+xml,
@@ -8,95 +9,154 @@
     <title>{{ $trip->title }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/toolbar.css') }}">
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f8f8f8;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        .trip-summary {
-            margin-bottom: 20px;
-        }
-
-        .trip-summary div {
-            margin-bottom: 5px;
-        }
-
-        .places-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .place-card {
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 10px;
-            background-color: #fcfcfc;
-        }
-
-        .place-card h4 {
-            margin: 0 0 5px 0;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: #007BFF;
-            font-weight: bold;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/show.css') }}">
 </head>
+
 <body>
 @include('components.toolbar')
 
 <div class="container">
-    <a href="{{ route('trips.index') }}" class="back-link">← Grįžti į kelionių sąrašą</a>
-    <h1>{{ $trip->mode === 'WALKING' ? '🚶‍♂️' : '🚗' }} {{ $trip->title }}</h1>
-
-    <div class="trip-summary">
-        <div><strong>Pradžios taškas:</strong> {{ $trip->start_address }}</div>
-        <div><strong>Pabaigos taškas:</strong> {{ $trip->end_address }}</div>
-        <div><strong>Atstumas:</strong> {{ $trip->distance }} km</div>
-        <div><strong>Trukmė:</strong> {{ $trip->duration }} min</div>
-        <div><strong>Bendra kaina:</strong> {{ $trip->price_total }} €</div>
+    <div class="top-links">
+        <a href="{{ route('trips.index') }}" id="savedTripBackLink" class="back-link">← Grįžti į kelionių sąrašą</a>
+        <a href="{{ route('map') }}?trip_id={{ $trip->id }}" id="savedTripEditLink" class="edit-link">✏️ Redaguoti</a>
     </div>
 
-    <h3>Lankytinos vietos:</h3>
-    <ul class="places-list">
-        @foreach ($trip->places->sortBy('order') as $place)
-            <li class="place-card">
-                <h4>{{ $place->name }}</h4>
-                <div><strong>Adresas:</strong> {{ $place->address }}</div>
-                <div><strong>Koordinatės:</strong> {{ $place->lat }}, {{ $place->lng }}</div>
-                @if ($place->price)
-                    <div><strong>Kaina:</strong> {{ $place->price }} €</div>
-                @endif
-            </li>
-        @endforeach
-    </ul>
-    <a href="{{ route('map') }}?trip_id={{ $trip->id }}">✏️ Redaguoti</a>
+    <div class="trip-title-box">
+        <h1>{{ $trip->mode === 'WALKING' ? '🚶‍♂️' : '🚗' }} {{ $trip->title }}</h1>
+    </div>
 
+    <div class="trip-layout">
+        <div class="trip-plan-column">
+            <div class="trip-plan" id="trip-plan-section">
+                <div class="trip-header-row">
+                    <h3 id="savedTripPlanTitle">Kelionės planas:</h3>
+                </div>
 
+                <ul id="trip-plan-list">
+                    <li class="start-point">
+                        <div class="place-row">
+                            <div class="place-left">
+                                <span class="plan-icon">🏁</span>
+                                <span id="savedTripPlanStart" class="plan-number">Pradžios taškas:</span>
+                                <span class="place-name">{{ $trip->start_name }}</span>
+                            </div>
+                        </div>
+
+                        <div class="plan-address-row">
+                            <div class="plan-address">{{ $trip->start_address }}</div>
+                        </div>
+                    </li>
+
+                    @foreach ($trip->places->sortBy('order') as $i => $place)
+                        <li>
+                            <div class="place-row">
+                                <div class="place-left">
+                                    @php
+                                        $iconMap = [
+                                            'tourist_attraction' => '📍',
+                                            'museum' => '🏛️',
+                                            'art_gallery' => '🖼️',
+                                            'park' => '🌳',
+                                            'natural_feature' => '⛰️',
+                                            'zoo' => '🦁',
+                                            'aquarium' => '🐠',
+                                            'amusement_park' => '🎢',
+                                            'church' => '⛪',
+                                            'hindu_temple' => '🛕',
+                                            'synagogue' => '🕍',
+                                        ];
+                                        $icon = $iconMap[$place->type ?? 'tourist_attraction'] ?? '📍';
+                                    @endphp
+                                    <span class="plan-icon">{{ $icon }}</span>
+                                    <span class="plan-number">{{ $i + 1 }}.</span>
+                                    <span class="place-name">{{ $place->name }}</span>
+                                </div>
+
+                                @if ($place->price)
+                                    <div class="place-price">
+                                        💶 {{ number_format($place->price, 2) }} €
+                                    </div>
+                                @endif
+
+                            </div>
+                            <div class="plan-address-row">
+                                <div class="plan-address">{{ $place->address }}</div>
+                            </div>
+                        </li>
+                    @endforeach
+
+                    <li class="end-point">
+                        <div class="place-row">
+                            <div class="place-left">
+                                <span class="plan-icon">🎯</span>
+                                <span id="savedTripPlanFinish" class="plan-number">Pabaigos taškas:</span>
+                                <span class="place-name">{{ $trip->end_name }}</span>
+                            </div>
+                        </div>
+
+                        <div class="plan-address-row">
+                            <div class="plan-address">{{ $trip->end_address }}</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="trip-map-column">
+            <div class="trip-plan" id="trip-plan-section">
+                <div class="trip-header-row">
+                    <h3 id="savedTripMapTitle">Kelionės žemėlapis:</h3>
+                </div>
+
+                <div id="trip-map" style="height: 400px; width: 100%; margin-bottom: 0;"></div>
+
+                <div class="compact-info" id="map-info">
+                    <span id="savedTripDistance"><strong>Atstumas:</strong> {{ $trip->distance }} km</span> |
+                    <span id="savedTripTime"><strong>Numatoma kelionės trukmė:</strong> {{ $trip->duration }} min</span> |
+                    <span id="savedTripPrice"><strong>Numatoma kelionės kaina:</strong> {{ $trip->price_total }} €</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script>
+    const placeTypeIcons = {
+        tourist_attraction: "📍",
+        museum: "🏛️",
+        art_gallery: "🖼️",
+        park: "🌳",
+        natural_feature: "⛰️",
+        zoo: "🦁",
+        aquarium: "🐠",
+        amusement_park: "🎢",
+        church: "⛪",
+        hindu_temple: "🛕",
+        synagogue: "🕍"
+    };
+    window.tripData = {
+        start_lat: {{ $trip->start_lat }},
+        start_lng: {{ $trip->start_lng }},
+        end_lat: {{ $trip->end_lat }},
+        end_lng: {{ $trip->end_lng }},
+        mode: "{{ $trip->mode }}",
+        places: [
+                @foreach ($trip->places->sortBy('order') as $place)
+            {
+                name: @json($place->name),
+                lat: {{ $place->lat }},
+                lng: {{ $place->lng }},
+                address: @json($place->address),
+                type: @json($place->type ?? 'tourist_attraction')
+            },
+            @endforeach
+        ]
+    };
+</script>
+
+<script src="{{ mix('js/show.js') }}" defer></script>
+<script src="{{ mix('js/toolbar_language_show.js') }}" defer></script>
+<script defer src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.key') }}&callback=initTripMap"></script>
+
 </body>
 </html>

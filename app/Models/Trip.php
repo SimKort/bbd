@@ -9,8 +9,12 @@ class Trip extends Model
     protected $fillable = [
         'user_id',
         'title',
+        'start_name',
         'start_address',
+        'start_lat', 'start_lng',
+        'end_name',
         'end_address',
+        'end_lat', 'end_lng',
         'distance',
         'duration',
         'price_total',

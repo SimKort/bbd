@@ -149,7 +149,18 @@ export const translations = {
         my_trips_distance: "Maršruto atstumas:",
         my_trips_travel_time: "Maršruto kelionės trukmė:",
         my_trips_price: "Apytikslė bendra kaina:",
-        my_trips_more_details: "👁️ Peržiūrėti"
+        my_trips_more_details: "👁️ Peržiūrėti",
+        /*------------------------------------------------------------------------------------------------------------*/
+        saved_trip_back_button: "← Grįžti į kelionių sąrašą",
+        saved_trip_edit_button: "✏️ Redaguoti",
+        saved_trp_plan_title: "Kelionės planas:",
+        saved_trip_plan_start: "Pradžios taškas:",
+        saved_trip_plan_end: "Pabaigos taškas:",
+        saved_trp_map_title: "Kelionės žemėlapis:",
+        saved_trip_plan_distance: "Atstumas:",
+        saved_trip_plan_time: "Numatoma kelionės trukmė:",
+        saved_trip_plan_price: "Numatoma kelionės kaina:",
+        /*------------------------------------------------------------------------------------------------------------*/
     },
     en: {
         toolbarTitle: "🌍 Travel planning tool",
@@ -301,6 +312,17 @@ export const translations = {
         my_trips_distance: "Route distance:",
         my_trips_travel_time: "Route travel time:",
         my_trips_price: "Approximate total price:",
-        my_trips_more_details: "👁️ View"
+        my_trips_more_details: "👁️ View",
+        /*------------------------------------------------------------------------------------------------------------*/
+        saved_trip_back_button: "← Back to my trips",
+        saved_trip_edit_button: "✏️ Edit",
+        saved_trp_plan_title: "Trip Plan:",
+        save_trip_plan_start: "Start location:",
+        save_trip_plan_end: "End location:",
+        saved_trp_map_title: "Trip Map:",
+        saved_trip_plan_distance: "Distance:",
+        saved_trip_plan_time: "Estimated trip time:",
+        saved_trip_plan_price: "Estimated trip price:",
+        /*------------------------------------------------------------------------------------------------------------*/
     }
 };

@@ -865,12 +865,6 @@ input[type="checkbox"] {
     display: flex;
     flex-direction: column;
 }
-.plan-address {
-    font-size: 13px;
-    color: #666;
-    margin-top: 2px;
-    padding-left: 46px;
-}
 .place-info {
     display: flex;
     flex-direction: column;
@@ -1026,9 +1020,10 @@ input[type="checkbox"] {
     display: flex;
     font-size: 13px;
     color: #666;
+    margin-top: 6px;
+    padding-left: 46px;
 }
 .plan-address {
-    padding-left: 46px;
     flex: none;
     white-space: normal;
 }

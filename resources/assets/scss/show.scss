@@ -1,0 +1,198 @@
+/* Puslapio bendri išvaizdos nustatymai */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #cfe8bd;
+}
+/*----------------------------------------------------------------*/
+
+// Toast pranešimas apie išsaugotą kelionės planą
+.container {
+    width: 100%;
+    margin: auto;
+    background: #cfe8bd;
+    padding: 30px 20px 0 20px;
+}
+.trip-title-box {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin: 10px 0 0 0;
+    h1 {
+        //padding: 5px 0;
+        margin:0;
+        text-align: center;
+        font-size: 26px;
+    }
+}
+.top-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.back-link,
+.edit-link {
+    margin-top: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #007bff;
+}
+.back-link:hover,
+.edit-link:hover {
+    text-decoration: underline;
+}
+.trip-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.trip-plan-column {
+    flex: 1 1 400px;
+}
+.trip-map-column {
+    flex: 1 1 400px;
+    min-width: 300px;
+}
+#trip-map {
+    height: 400px;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 10px 10px 0 0;
+}
+@media (max-width: 768px) {
+    .trip-layout {
+        flex-direction: column;
+    }
+    .trip-map-column {
+        margin-top: 20px;
+    }
+}
+.trip-plan {
+    margin: 20px auto;
+    max-width: 1000px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.trip-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 20px;
+}
+h3 {
+    margin: 0;
+    color: #a44200;
+    font-size: 24px;
+}
+#trip-plan-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#trip-plan-list li {
+    display: block;
+    padding: 4px 14px 10px 14px;
+    margin-bottom: 8px;
+    background-color: white;
+    border-left: 8px solid #618B25;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #333;
+}
+.plan-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.place-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.place-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+.place-left {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding-top: 6px;
+}
+.place-name {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    font-weight: 500;
+}
+.plan-icon {
+    min-width: 20px;
+    text-align: center;
+}
+.plan-number {
+    min-width: 20px;
+    color: #d9a266;
+    font-weight: 600;
+}
+.plan-address-row {
+    display: flex;
+    font-size: 13px;
+    color: #666;
+}
+.plan-address {
+    padding-left: 46px;
+    flex: none;
+    white-space: normal;
+    margin-top: 2px;
+    line-height: 1.4;
+}
+.place-price {
+    font-size: 14px;
+    color: #555;
+    margin-left: auto;
+    white-space: nowrap;
+    padding-left: 10px;
+    align-self: flex-end;
+    font-weight: 500;
+}
+.compact-info {
+    color: #333;
+    text-align: center;
+    background-color: #ffffff;
+    span {
+        margin: 0 6px;
+        white-space: nowrap;
+        strong {
+            color: #618b25;
+        }
+    }
+}
+#map-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0 12px 0;
+    border-radius: 0 0 4px 4px;
+    font-size: 14px;
+    margin: 0;
+    height: 15px;
+    width: 100%;
+}
+#map-info .info-item {
+    flex: 1;
+    text-align: center;
+}
+#map-info strong {
+    color: #a44200;
+}
+/*----------------------------------------------------------------*/

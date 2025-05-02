@@ -31,9 +31,9 @@
                     <h3 class="trip-title">{{ $trip->title }} {{ $emoji }}</h3>
 
                     <div class="trip-route-row">
-                        <div class="trip-address">{{ $trip->start_address }}</div>
+                        <div class="trip-address">{{ $trip->start_name }}</div>
                         <div class="trip-arrow">→</div>
-                        <div class="trip-address">{{ $trip->end_address }}</div>
+                        <div class="trip-address">{{ $trip->end_name }}</div>
                     </div>
 
                     <div class="trip-info-small">
