@@ -150,6 +150,10 @@ export const translations = {
         my_trips_travel_time: "Maršruto kelionės trukmė:",
         my_trips_price: "Apytikslė bendra kaina:",
         my_trips_more_details: "👁️ Peržiūrėti",
+        my_trips_delete: "🗑️ Ištrinti",
+        delete_modal_text: "Ar tikrai norite ištrinti šią kelionę?",
+        delete_modal_confirm: "Ištrinti",
+        delete_modal_cancel: "Atšaukti",
         /*------------------------------------------------------------------------------------------------------------*/
         saved_trip_back_button: "← Grįžti į kelionių sąrašą",
         saved_trip_edit_button: "✏️ Redaguoti",
@@ -160,6 +164,8 @@ export const translations = {
         saved_trip_plan_distance: "Atstumas:",
         saved_trip_plan_time: "Numatoma trukmė:",
         saved_trip_plan_price: "Numatoma kaina:",
+        saved_trip_google_maps: "🗺️ Atidaryti Google Maps 🗺️",
+        saved_trip_pdf_file: "📥 Parsisiųsti kaip PDF 📥"
         /*------------------------------------------------------------------------------------------------------------*/
     },
     en: {
@@ -313,6 +319,10 @@ export const translations = {
         my_trips_travel_time: "Route travel time:",
         my_trips_price: "Approximate total price:",
         my_trips_more_details: "👁️ View",
+        my_trips_delete: "🗑️ Delete",
+        delete_modal_text: "Are you sure you want to delete this trip?",
+        delete_modal_confirm: "Delete",
+        delete_modal_cancel: "Cancel",
         /*------------------------------------------------------------------------------------------------------------*/
         saved_trip_back_button: "← Back to my trips",
         saved_trip_edit_button: "✏️ Edit",
@@ -323,6 +333,8 @@ export const translations = {
         saved_trip_plan_distance: "Distance:",
         saved_trip_plan_time: "Estimated time:",
         saved_trip_plan_price: "Estimated price:",
+        saved_trip_google_maps: "🗺️ Open on Google Maps 🗺️",
+        saved_trip_pdf_file: "📥 Download as PDF 📥"
         /*------------------------------------------------------------------------------------------------------------*/
     }
 };

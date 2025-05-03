@@ -37,6 +37,29 @@ export function updateTexts() {
         const priceText = priceMatch[0] || "";
         div.innerHTML = `<strong>${t.my_trips_price}</strong> ${priceText}`;
     });
-    const myTripsMoreDetails = document.getElementById("myTripsMoreDetails");
-    if (myTripsMoreDetails) { myTripsMoreDetails.textContent = t.my_trips_more_details; }
+    document.querySelectorAll(".trip-view-link").forEach(el => {
+        el.textContent = t.my_trips_more_details;
+    });
+    document.querySelectorAll(".trip-delete-link").forEach(el => {
+        el.textContent = t.my_trips_delete;
+    });
+    const myTripsModalText = document.getElementById("delete-modal-text");
+    if (myTripsModalText) { myTripsModalText.textContent = t.delete_modal_text; }
+    const myTripsModalConfirm = document.getElementById("confirm-trip-title");
+    if (myTripsModalConfirm) { myTripsModalConfirm.textContent = t.delete_modal_confirm; }
+    const myTripsModalCancel = document.getElementById("cancel-trip-title");
+    if (myTripsModalCancel) { myTripsModalCancel.textContent = t.delete_modal_cancel; }
 }
+
+// Ištrynimo modal atidarymo funkcija
+function openDeleteModal(tripId) {
+    const form = document.getElementById('delete-form');
+    form.action = `/trips/${tripId}`;
+    document.getElementById('delete-modal').style.display = 'flex';
+}
+window.openDeleteModal = openDeleteModal;
+
+// Modal uždarymas atšaukus
+document.getElementById('cancel-trip-title').addEventListener('click', function () {
+    document.getElementById('delete-modal').style.display = 'none';
+});

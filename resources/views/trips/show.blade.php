@@ -26,6 +26,7 @@
     <div class="top-links">
         <a href="{{ route('trips.index') }}" id="savedTripBackLink" class="back-link">← Grįžti į kelionių sąrašą</a>
         <a href="{{ route('map') }}?trip_id={{ $trip->id }}" id="savedTripEditLink" class="edit-link">✏️ Redaguoti</a>
+        <a href="#" id="savedTripDeleteLink" class="delete-link" onclick="event.preventDefault(); openDeleteModal({{ $trip->id }});">🗑️ Ištrinti</a>
     </div>
 
     <div class="trip-title-box">
@@ -124,18 +125,33 @@
                 </div>
             </div>
 
-            <a href="{{ $trip->getGoogleMapsLink() }}" target="_blank" class="maps-link">
-                🗺️ Atidaryti Google Maps
-            </a>
+            <div class="bottom-links">
+                <a href="#" onclick="function downloadPdfWithLang(tripId) {
+                    const lang = localStorage.getItem('preferredLang') || 'lt';
+                    window.location.href = `/trips/${tripId}/download?lang=${lang}`;
+                }
+                downloadPdfWithLang({{ $trip->id }})" id="saveAsPDF" class="maps-link">
+                    📥 Parsisiųsti kaip PDF 📥
+                </a>
 
-            <a href="#" onclick="function downloadPdfWithLang(tripId) {
-                const lang = localStorage.getItem('preferredLang') || 'lt';
-                window.location.href = `/trips/${tripId}/download?lang=${lang}`;
-            }
-            downloadPdfWithLang({{ $trip->id }})" class="maps-link">
-                📥 Parsisiųsti kaip PDF
-            </a>
+                <a href="{{ $trip->getGoogleMapsLink() }}" target="_blank" id="googleMapsBtn" class="maps-link">
+                    🗺️ Atidaryti Google Maps 🗺️
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div id="delete-modal" class="confirm-modal" style="display: none;">
+    <div class="confirm-modal-content">
+        <p id="delete-modal-text">Ar tikrai norite ištrinti šią kelionę?</p>
+        <div class="confirm-buttons">
+            <form id="delete-form" method="POST" style="margin: 0;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" id="confirm-trip-title">Ištrinti</button>
+            </form>
+            <button id="cancel-trip-title" type="button">Atšaukti</button>
         </div>
     </div>
 </div>

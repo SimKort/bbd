@@ -84,3 +84,6 @@ Route::get('/api/trips/{id}', [TripController::class, 'getTripData'])->middlewar
 // Kelionių plano pdf parsisiuntimui
 Route::get('/trips/{id}/download', [TripController::class, 'downloadPdf'])
     ->middleware('auth')->name('trips.download');
+
+// Kelionės plano ištrynimui
+Route::delete('/trips/{id}', [TripController::class, 'destroy'])->name('trips.destroy');

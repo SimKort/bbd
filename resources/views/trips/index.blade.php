@@ -46,12 +46,34 @@
                         <div class="myTripsPrice"><strong>Apytikslė bendra kaina:</strong> {{ $trip->price_total }} €</div>
                     </div>
 
-                    <a href="{{ route('trips.show', $trip->id) }}" id="myTripsMoreDetails" class="trip-view-link">👁️ Peržiūrėti</a>
-                </li>
+                    <div class="trip-buttons">
+                        <a href="{{ route('trips.show', $trip->id) }}" class="trip-view-link">👁️ Peržiūrėti</a>
 
+                        <a href="#" class="trip-delete-link" onclick="event.preventDefault(); openDeleteModal({{ $trip->id }});">🗑️ Ištrinti</a>
+
+                        <form id="delete-form-{{ $trip->id }}" action="{{ route('trips.destroy', $trip->id) }}" method="POST" style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                    </div>
+                </li>
             @endforeach
         </ul>
     @endif
+</div>
+
+<div id="delete-modal" class="confirm-modal" style="display: none;">
+    <div class="confirm-modal-content">
+        <p id="delete-modal-text">Ar tikrai norite ištrinti šią kelionę?</p>
+        <div class="confirm-buttons">
+            <form id="delete-form" method="POST" style="margin: 0;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" id="confirm-trip-title">Ištrinti</button>
+            </form>
+            <button id="cancel-trip-title" type="button">Atšaukti</button>
+        </div>
+    </div>
 </div>
 
 <script src="{{ mix('js/toolbar_language_trips.js') }}"></script>

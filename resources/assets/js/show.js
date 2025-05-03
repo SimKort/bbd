@@ -17,6 +17,14 @@ export function updateTexts() {
     if (savedTripBackLink) { savedTripBackLink.textContent = t.saved_trip_back_button; }
     const savedTripEditLink = document.getElementById("savedTripEditLink");
     if (savedTripEditLink) { savedTripEditLink.textContent = t.saved_trip_edit_button; }
+    const myTripsModalOpen = document.getElementById("savedTripDeleteLink");
+    if (myTripsModalOpen) { myTripsModalOpen.textContent = t.my_trips_delete; }
+    const myTripsModalText = document.getElementById("delete-modal-text");
+    if (myTripsModalText) { myTripsModalText.textContent = t.delete_modal_text; }
+    const myTripsModalConfirm = document.getElementById("confirm-trip-title");
+    if (myTripsModalConfirm) { myTripsModalConfirm.textContent = t.delete_modal_confirm; }
+    const myTripsModalCancel = document.getElementById("cancel-trip-title");
+    if (myTripsModalCancel) { myTripsModalCancel.textContent = t.delete_modal_cancel; }
     const savedTripPlanTitle = document.getElementById("savedTripPlanTitle");
     if (savedTripPlanTitle) { savedTripPlanTitle.textContent = t.saved_trp_plan_title; }
     const savedTripPlanStart = document.getElementById("savedTripPlanStart");
@@ -34,6 +42,10 @@ export function updateTexts() {
             strongTags[2].textContent = t.saved_trip_plan_price;
         }
     }
+    const googleMapsBtn = document.getElementById("googleMapsBtn");
+    if (googleMapsBtn) { googleMapsBtn.textContent = t.saved_trip_google_maps; }
+    const saveAsPDF = document.getElementById("saveAsPDF");
+    if (saveAsPDF) { saveAsPDF.textContent = t.saved_trip_pdf_file; }
 }
 
 // Dinamiškai gauti kelionės duomenims ir nubrėžti kelius
@@ -141,3 +153,16 @@ window.initTripMap = function () {
     });
     map.fitBounds(bounds);
 };
+
+// Ištrynimo modal atidarymo funkcija
+function openDeleteModal(tripId) {
+    const form = document.getElementById('delete-form');
+    form.action = `/trips/${tripId}`;
+    document.getElementById('delete-modal').style.display = 'flex';
+}
+window.openDeleteModal = openDeleteModal;
+
+// Modal uždarymas atšaukus
+document.getElementById('cancel-trip-title').addEventListener('click', function () {
+    document.getElementById('delete-modal').style.display = 'none';
+});

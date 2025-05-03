@@ -113,4 +113,11 @@ class TripController extends Controller
         ]);
         return $pdf->download('trip_' . Str::slug($trip->title) . '.pdf');
     }
+
+    public function destroy($id)
+    {
+        $trip = Trip::where('user_id', auth()->id())->findOrFail($id);
+        $trip->delete();
+        return redirect()->route('trips.index')->with('success', true);
+    }
 }
