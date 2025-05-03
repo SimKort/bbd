@@ -15,7 +15,7 @@
 @php
     use Carbon\CarbonInterval;
     $durationFormatted = $trip->duration >= 60
-        ? CarbonInterval::minutes($trip->duration)->cascade()->forHumans(['join' => true, 'short' => true, 'parts' => 2])
+        ? CarbonInterval::minutes($trip->duration)->cascade()->forHumans(['short' => true, 'parts' => 2])
         : $trip->duration . ' min';
 @endphp
 
@@ -127,6 +127,15 @@
             <a href="{{ $trip->getGoogleMapsLink() }}" target="_blank" class="maps-link">
                 🗺️ Atidaryti Google Maps
             </a>
+
+            <a href="#" onclick="function downloadPdfWithLang(tripId) {
+                const lang = localStorage.getItem('preferredLang') || 'lt';
+                window.location.href = `/trips/${tripId}/download?lang=${lang}`;
+            }
+            downloadPdfWithLang({{ $trip->id }})" class="maps-link">
+                📥 Parsisiųsti kaip PDF
+            </a>
+
         </div>
     </div>
 </div>

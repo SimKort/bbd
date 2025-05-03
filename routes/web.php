@@ -75,8 +75,12 @@ Route::post('/trips', [TripController::class, 'store'])->middleware('auth');
 // Kelionių planų puslapiui
 Route::get('/trips', [TripController::class, 'index'])->middleware('auth')->name('trips.index');
 
-
-
+// Kelionių plano puslapiui
 Route::get('/trips/{id}', [TripController::class, 'show'])->middleware('auth')->name('trips.show');
 
+// Kelionių plano atidarymui Google Maps
 Route::get('/api/trips/{id}', [TripController::class, 'getTripData'])->middleware('auth');
+
+// Kelionių plano pdf parsisiuntimui
+Route::get('/trips/{id}/download', [TripController::class, 'downloadPdf'])
+    ->middleware('auth')->name('trips.download');

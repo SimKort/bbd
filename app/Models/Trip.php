@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Http;
 
 class Trip extends Model
 {
@@ -43,5 +44,43 @@ class Trip extends Model
             . "&destination={$destination}"
             . ($waypoints ? "&waypoints={$waypoints}" : "")
             . "&travelmode=" . strtolower($this->mode);
+    }
+
+    public function getEncodedStaticMapUrl()
+    {
+        $apiKey = config('services.google_maps.key');
+        $origin = "{$this->start_lat},{$this->start_lng}";
+        $destination = "{$this->end_lat},{$this->end_lng}";
+        $waypoints = $this->places->sortBy('order')->map(function ($place) {
+            return "{$place->lat},{$place->lng}";
+        })->implode('|');
+
+        $response = Http::get('https://maps.googleapis.com/maps/api/directions/json', [
+            'origin' => $origin,
+            'destination' => $destination,
+            'waypoints' => $waypoints,
+            'mode' => strtolower($this->mode),
+            'key' => $apiKey,
+        ]);
+
+        if ($response->successful() && isset($response['routes'][0]['overview_polyline']['points'])) {
+            $encoded = $response['routes'][0]['overview_polyline']['points'];
+            $pathColor = $this->mode === 'WALKING' ? '0x000000' : 'blue';
+            $placeMarkers = '';
+            $label = 'A';
+            foreach ($this->places->sortBy('order') as $place) {
+                $marker = "color:yellow|label:$label|{$place->lat},{$place->lng}";
+                $placeMarkers .= '&markers=' . urlencode($marker);
+                $label++;
+            }
+            $url = "https://maps.googleapis.com/maps/api/staticmap?scale=2&size=800x400"
+                . "&path=color:$pathColor|weight:4|enc:" . urlencode($encoded)
+                . "&markers=color:green|label:S|$origin"
+                . "&markers=color:red|label:E|$destination"
+                . $placeMarkers
+                . "&key=$apiKey";
+            return $url;
+        }
+        return null;
     }
 }

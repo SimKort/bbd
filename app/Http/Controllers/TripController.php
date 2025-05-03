@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Trip;
 use App\Models\TripPlace;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class TripController extends Controller
 {
@@ -90,5 +93,24 @@ class TripController extends Controller
     {
         $trip = Trip::with('places')->where('user_id', auth()->id())->findOrFail($id);
         return response()->json($trip);
+    }
+
+    public function downloadPdf($id, Request $request)
+    {
+        $trip = Trip::with('places')->where('user_id', auth()->id())->findOrFail($id);
+        $lang = $request->query('lang', 'lt');
+        $mapUrl = $trip->getEncodedStaticMapUrl();
+        if (!$mapUrl) { abort(500, 'Nepavyko sugeneruoti maršruto žemėlapio.'); }
+        $filename = 'map_' . $trip->id . '.png';
+        $mapPath = public_path('maps/' . $filename);
+        if (!File::exists(public_path('maps'))) { File::makeDirectory(public_path('maps'), 0755, true); }
+        $imageData = file_get_contents($mapUrl);
+        file_put_contents($mapPath, $imageData);
+        $pdf = PDF::loadView('trips.pdf', [
+            'trip' => $trip,
+            'mapImagePath' => $mapPath,
+            'lang' => $lang,
+        ]);
+        return $pdf->download('trip_' . Str::slug($trip->title) . '.pdf');
     }
 }
