@@ -5,6 +5,7 @@ import { totalObjectCost } from './map_price_popup';
 import "./map_trip_places";
 
 let fuelConsumption = 6, fuelPrices = {}, startCountryCode = null, fuelType = "gasoline", userFuelPrice = null, totalFuelCost = 0, fuelModalWasConfirmed = false;
+export let fuelFlag = false;
 
 export function setFuelModalWasConfirmed(value) {
     fuelModalWasConfirmed = value;
@@ -49,6 +50,7 @@ window.addEventListener("DOMContentLoaded", () => {
             fuelModalWasConfirmed = true;
             updateFuelCost();
             document.getElementById("fuel-cost-modal").style.display = "none";
+            fuelFlag = true;
         }
     };
     document.querySelectorAll('input[name="fuel-input"]').forEach(radio => {
@@ -193,4 +195,17 @@ export function getFuelData() {
         fuel_price: userFuelPrice ?? (fuelPrices[startCountryCode]?.[fuelType] ?? null),
         fuel_consumption: fuelConsumption,
     };
+}
+
+// Kainos atnaujinimui pridedant ar ištrinant vietas funkcija
+export function syncFuelFormValues() {
+    const input = parseFloat(document.getElementById("fuel-input").value);
+    const customPrice = parseFloat(document.getElementById("fuel-price-input")?.value);
+    const fuelTypeRadio = document.querySelector('input[name="fuel-type"]:checked');
+    const inputTypeRadio = document.querySelector('input[name="fuel-input"]:checked');
+    if (!isNaN(input) && input > 0) {
+        fuelConsumption = input;
+        fuelType = fuelTypeRadio?.value || "gasoline";
+        userFuelPrice = inputTypeRadio?.value === "custom" && !isNaN(customPrice) ? customPrice : null;
+    }
 }

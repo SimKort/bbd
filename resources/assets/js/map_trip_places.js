@@ -4,6 +4,7 @@ import { addedWaypoints, calculateRoute, getSortedWaypointsByLastRouteOrder } fr
 import { markerMap } from "./map_places_to_route";
 import { showInfoWindow } from "./map_information_window";
 import { updateTotalPlaceCost } from "./map_price_popup";
+import {fuelFlag, syncFuelFormValues, updateFuelCost} from "./map_fuel_price";
 
 let currentStart = "", currentEnd = "", currentStartName = "", currentEndName = "", pendingPlaceToDelete = null;
 export function setCurrentStart(val) {
@@ -58,6 +59,11 @@ export function renderTripPlan(sortedWaypoints = addedWaypoints) {
         list.appendChild(renderTripItem(place, i));
     });
     list.appendChild(renderTripPoint(currentEndName || currentEnd, currentEnd, "🎯", t.endPoint, "end-point"));
+    const mode = document.getElementById("mode").value || "DRIVING";
+    if(mode === "DRIVING" && fuelFlag === true) {
+        syncFuelFormValues();
+        updateFuelCost();
+    }
 }
 window.renderTripPlan = renderTripPlan;
 

@@ -198,6 +198,7 @@
     <div class="confirm-modal-content">
         <p id="tripTitle"> Įveskite kelionės pavadinimą:</p>
         <input id="trip-title-input" type="text" style="width: 100%; padding: 8px; margin-top: 10px;">
+        <span id="trip-title-error" class="input-error-message" style="color: #c20027; font-size: 14px; margin-top: 5px;"></span>
         <div class="confirm-buttons" style="margin-top: 20px;">
             <button id="confirm-trip-title">Išsaugoti</button>
             <button id="cancel-trip-title">Atšaukti</button>

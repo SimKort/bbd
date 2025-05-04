@@ -34,18 +34,33 @@ body {
     align-items: center;
     margin-bottom: 15px;
 }
-.back-link,
-.edit-link,
-.delete-link {
+.back-link {
     margin-top: 20px;
     text-decoration: none;
     font-weight: bold;
-    color: #1e73e0;  //#0257b3
+    color: #1e73e0;
 }
-.back-link:hover,
-.edit-link:hover,
-.delete-link:hover {
-    color: #0257b3
+.back-link:hover {
+    color: #0257b3;
+}
+.edit-link{
+    margin-top: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #3c763d;
+    margin-left: 950px;
+}
+.edit-link:hover{
+    color: #1f3d20;
+}
+.delete-link{
+    margin-top: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #a94442;
+}
+.delete-link:hover{
+    color: #661412;
 }
 .trip-layout {
     display: flex;

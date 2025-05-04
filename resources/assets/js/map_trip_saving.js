@@ -115,8 +115,13 @@ document.getElementById("confirm-trip-title").onclick = () => {
     const titleInput = document.getElementById("trip-title-input").value.trim();
     const t = translations[currentLanguage];
     if (!titleInput) {
-        alert(t.save_trip_plan_input_error);
+        const errorEl = document.getElementById("trip-title-error");
+        errorEl.textContent = t.save_trip_plan_input_error || "Pavadinimas privalomas.";
+        errorEl.style.display = "block";
         return;
+    }
+    else {
+        document.getElementById("trip-title-error").style.display = "none";
     }
     document.getElementById("trip-title-modal").style.display = "none";
     if (pendingTripData) {
