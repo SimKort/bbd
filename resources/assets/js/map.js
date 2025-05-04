@@ -152,6 +152,12 @@ export function updateTexts() {
     if (updateTripPlanBtn) { updateTripPlanBtn.textContent = t.update_trip_plan; }
     const cancelUpdateTripPlanBtn = document.getElementById("cancelUpdateTripPlanBtn");
     if (cancelUpdateTripPlanBtn) { cancelUpdateTripPlanBtn.textContent = t.cancel_update_trip_plan; }
+    const guestModalText = document.getElementById("guest-restriction-modal-text");
+    if (guestModalText) { guestModalText.textContent = t.guest_restriction_modal_text; }
+    const guestModalLogin = document.getElementById("guest-restriction-modal-login");
+    if (guestModalLogin) { guestModalLogin.textContent = t.guest_restriction_modal_login; }
+    const guestModalRegister = document.getElementById("guest-restriction-modal-register");
+    if (guestModalRegister) { guestModalRegister.textContent = t.guest_restriction_modal_register; }
     renderTripPlan();
 }
 

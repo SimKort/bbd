@@ -142,6 +142,9 @@ export const translations = {
         save_trip_plan_cancel: "Atšaukti",
         update_trip_plan: "Išsaugoti atnaujintą kelionės planą",
         cancel_update_trip_plan: "Atšaukti kelionės plano redagavimą",
+        guest_restriction_modal_text: "Norint išsaugoti kelionės planą, atverti Google Maps ar atsisiųsti kaip PDF failą, naudotojas turi būti susikūręs paskyrą.",
+        guest_restriction_modal_login: "Prisijungti",
+        guest_restriction_modal_register: "Užsiregistruoti",
         /*------------------------------------------------------------------------------------------------------------*/
         tittleTrips: "Mano kelionės",
         newRouteLink: "➕ naujas kelionės planas ➕",
@@ -313,6 +316,9 @@ export const translations = {
         save_trip_plan_cancel: "Cancel",
         update_trip_plan: "Save updated trip plan",
         cancel_update_trip_plan: "Cancel trip plan editing",
+        guest_restriction_modal_text: "To save a trip plan, open it in Google Maps, or download it as a PDF, the user must have an account.",
+        guest_restriction_modal_login: "Login",
+        guest_restriction_modal_register: "Register",
         /*------------------------------------------------------------------------------------------------------------*/
         tittleTrips: "My trips",
         newRouteLink: "➕ new trip plan ➕",

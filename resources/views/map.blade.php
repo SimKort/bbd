@@ -130,7 +130,7 @@
 
     <div class="save-trip-button-wrapper">
         @guest
-            <button id="saveTripPlan" class="save-trip-btn" onclick="showGuestRestrictionModal()">💾 Išsaugoti kelionės maršrutą</button>
+            <button id="saveTripPlan" class="save-trip-btn" onclick="handleGuestSave()">💾 Išsaugoti kelionės maršrutą</button>
         @else
             @if(request('trip_id'))
                 <button id="updateTripPlanBtn" class="save-trip-btn" onclick="saveUpdatedTrip()">Išsaugoti atnaujintą kelionės planą</button>
@@ -207,10 +207,11 @@
 
 <div id="guest-restriction-modal" class="confirm-modal">
     <div class="confirm-modal-content">
-        <p>Norint išsaugoti kelionės planą, atverti Google Maps ar atsisiųsti kaip PDF naudotojas turi turėti paskyrą.</p>
+        <span class="close-button" onclick="closeGuestRestrictionModal()">&times;</span>
+        <p id="guest-restriction-modal-text">Norint išsaugoti kelionės planą, atverti Google Maps ar atsisiųsti kaip PDF failą, naudotojas turi būti susikūręs paskyrą.</p>
         <div class="confirm-buttons">
-            <a href="{{ route('login') }}" class="btn-confirm">Prisijungti</a>
-            <a href="{{ route('register') }}" class="btn-confirm">Registruotis</a>
+            <a href="{{ route('login') }}" id="guest-restriction-modal-login" class="btn-go-login">Prisijungti</a>
+            <a href="{{ route('register') }}" id="guest-restriction-modal-register" class="btn-go-register">Užsiregistruoti</a>
         </div>
     </div>
 </div>
@@ -226,13 +227,9 @@
     </script>
 @endif
 
-<script>
-    function showGuestRestrictionModal() { document.getElementById("guest-restriction-modal").style.display = "block"; }
-    function closeGuestRestrictionModal() { document.getElementById("guest-restriction-modal").style.display = "none"; }
-</script>
-
 <script src="{{ mix('js/toolbar_language_map.js') }}"></script>
 <script src="{{ mix('js/map.js') }}"></script>
+<script src="{{ mix('js/guest_trip_storage.js') }}"></script>
 
 <script>
     window.mapApiKey = '{{ config('services.google_maps.key') }}';
