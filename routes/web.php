@@ -87,3 +87,12 @@ Route::get('/trips/{id}/download', [TripController::class, 'downloadPdf'])
 
 // Kelionės plano ištrynimui
 Route::delete('/trips/{id}', [TripController::class, 'destroy'])->name('trips.destroy');
+
+// Išsaugotos kelionės duomenų užkrovimui
+Route::get('/map', [TripController::class, 'showMap'])->name('map');
+
+// Išsaugotos kelionės vietų svetainėms
+Route::post('/trip-places/{place_id}/update-website', [TripController::class, 'updatePlaceWebsite']);
+
+// Išsaugotos kelionės atnaujinimui
+Route::put('/trips/{id}', [TripController::class, 'update']);

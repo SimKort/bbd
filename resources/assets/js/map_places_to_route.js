@@ -1,7 +1,7 @@
 import { translations } from "./translations";
 import { currentLanguage } from "./toolbar_language_map";
 import { map, placesService } from "./map";
-import { addedWaypoints, calculateRoute } from "./map_route_creation";
+import { addedWaypoints, calculateRoute, getSortedWaypointsByLastRouteOrder } from "./map_route_creation";
 import { suggestedPlaces } from "./map_find_attractions";
 import { renderSuggestedPlaces } from "./map_suggested_places";
 import { showInfoWindow } from "./map_information_window";
@@ -37,7 +37,7 @@ function ensureMarkerExists(place) {
 }
 
 // Vietos pridėjimo į kelionės maršrutą funkcija
-function addPlaceToWaypoints(place, marker) {
+export function addPlaceToWaypoints(place, marker) {
     const copiedPlace = {
         ...place,
         lat: place.location?.lat?.(),
@@ -52,7 +52,7 @@ function addPlaceToWaypoints(place, marker) {
     addedWaypoints.push(copiedPlace);
     suggestedPlaces.splice(suggestedPlaces.indexOf(place), 1);
     renderSuggestedPlaces();
-    renderTripPlan();
+    renderTripPlan(getSortedWaypointsByLastRouteOrder());
     calculateRoute();
 }
 

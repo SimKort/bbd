@@ -127,8 +127,18 @@
         <span><strong>Numatoma kelionės trukmė:</strong> <span id="duration-bottom">-</span></span> |
         <span><strong>Numatoma kelionės kaina:</strong> <span id="total-place-cost-bottom">0 €</span></span>
     </div>
+
     <div class="save-trip-button-wrapper">
-        <button id="saveTripPlan" class="save-trip-btn" onclick="saveTrip()">💾 Išsaugoti kelionės maršrutą</button>
+        @guest
+            <button id="saveTripPlan" class="save-trip-btn" onclick="showGuestRestrictionModal()">💾 Išsaugoti kelionės maršrutą</button>
+        @else
+            @if(request('trip_id'))
+                <button id="updateTripPlanBtn" class="save-trip-btn" onclick="saveUpdatedTrip()">Išsaugoti atnaujintą kelionės planą</button>
+                <button id="cancelUpdateTripPlanBtn" class="cancel-trip-btn" onclick="window.location.href='/trips'">Atšaukti kelionės plano redagavimą</button>
+            @else
+                <button id="saveTripPlan" class="save-trip-btn" onclick="saveTrip()">💾 Išsaugoti kelionės maršrutą</button>
+            @endif
+        @endguest
     </div>
 </div>
 
@@ -194,6 +204,32 @@
         </div>
     </div>
 </div>
+
+<div id="guest-restriction-modal" class="confirm-modal">
+    <div class="confirm-modal-content">
+        <p>Norint išsaugoti kelionės planą, atverti Google Maps ar atsisiųsti kaip PDF naudotojas turi turėti paskyrą.</p>
+        <div class="confirm-buttons">
+            <a href="{{ route('login') }}" class="btn-confirm">Prisijungti</a>
+            <a href="{{ route('register') }}" class="btn-confirm">Registruotis</a>
+        </div>
+    </div>
+</div>
+
+@if(request('trip_id') && isset($trip))
+    <script>
+        window.tripData = @json($trip);
+        window.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => {
+                preloadTrip(window.tripData);
+            }, 300);
+        });
+    </script>
+@endif
+
+<script>
+    function showGuestRestrictionModal() { document.getElementById("guest-restriction-modal").style.display = "block"; }
+    function closeGuestRestrictionModal() { document.getElementById("guest-restriction-modal").style.display = "none"; }
+</script>
 
 <script src="{{ mix('js/toolbar_language_map.js') }}"></script>
 <script src="{{ mix('js/map.js') }}"></script>

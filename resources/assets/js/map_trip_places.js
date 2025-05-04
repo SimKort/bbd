@@ -1,6 +1,6 @@
 import { translations } from "./translations";
 import { currentLanguage } from "./toolbar_language_map";
-import { addedWaypoints, calculateRoute } from "./map_route_creation";
+import { addedWaypoints, calculateRoute, getSortedWaypointsByLastRouteOrder } from "./map_route_creation";
 import { markerMap } from "./map_places_to_route";
 import { showInfoWindow } from "./map_information_window";
 import { updateTotalPlaceCost } from "./map_price_popup";
@@ -107,6 +107,7 @@ function renderTripItem(place, i) {
     li.dataset.lat = place.lat;
     li.dataset.lng = place.lng;
     li.dataset.price = place.cost ?? place.price ?? 0;
+    li.dataset.website = place.website || '';
     const content = document.createElement("div");
     content.className = "plan-content";
     const row = document.createElement("div");
@@ -203,7 +204,7 @@ function removeFromTrip(placeToRemove) {
         addedWaypoints.splice(index, 1);
     }
     updateTotalPlaceCost();
-    renderTripPlan();
+    renderTripPlan(getSortedWaypointsByLastRouteOrder());
     calculateRoute();
 }
 window.removeFromTrip = removeFromTrip;

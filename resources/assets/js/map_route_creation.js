@@ -4,6 +4,15 @@ import { setLastRouteSteps } from "./map_suggested_places";
 import { setCurrentStart, setCurrentEnd, setCurrentStartName, setCurrentEndName, renderTripPlan } from "./map_trip_places";
 import { setFuelStartCountry, updateTooltip } from "./map_fuel_price";
 
+let lastWaypointOrder = [];
+
+function setLastWaypointOrder(order) {
+    lastWaypointOrder = order;
+}
+export function getSortedWaypointsByLastRouteOrder() {
+    return lastWaypointOrder.map(i => addedWaypoints[i]).filter(Boolean);
+}
+
 export let addedWaypoints = [];
 let currentMode = "DRIVING", walkingPolyline = null, startMarker, endMarker, fuelModalShown = false;
 export function setFuelModalShown(value) {
@@ -82,7 +91,7 @@ function handleRouteDetails(startDetails, endDetails, start, end, mode) {
         map,
         icon: "http://maps.google.com/mapfiles/ms/icons/red.png"
     });
-    renderTripPlan();
+    renderTripPlan(getSortedWaypointsByLastRouteOrder());
     requestRoute(start, end, mode);
     const countryComponent = startDetails.address_components.find(c => c.types.includes("country"));
     const countryCode = countryComponent?.short_name || null;
@@ -126,8 +135,8 @@ function handleRouteResponse(response, status) {
     calculateAndDisplayRouteSummary(response);
     fitMapToRouteBounds(response);
     const order = response.routes[0].waypoint_order || [];
-    sortAddedWaypointsByGoogleOrder(order);
-    const sortedWaypoints = order.map(index => addedWaypoints[index]);
+    setLastWaypointOrder(order);
+    const sortedWaypoints = getSortedWaypointsByLastRouteOrder();
     renderTripPlan(sortedWaypoints);
     showPlacesSection();
 }
@@ -192,11 +201,4 @@ function fitMapToRouteBounds(response) {
 // Lankytinų vietų elemento atvaizdavimo funkcija
 function showPlacesSection() {
     document.getElementById("places-section").style.display = "block";
-}
-
-// Lankytinų vietų rūšiavimo pagal kelionės maršrutą funkcija
-export function sortAddedWaypointsByGoogleOrder(order) {
-    if (!Array.isArray(order)) return;
-    addedWaypoints = order.map(i => addedWaypoints[i]).filter(Boolean);
-    addedWaypoints.forEach((p, idx) => p.order = idx + 1);
 }

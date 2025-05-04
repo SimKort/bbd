@@ -14,7 +14,8 @@ class TripPlace extends Model
         'price',
         'order',
         'lat',
-        'lng'
+        'lng',
+        'website'
     ];
 
     public function trip()

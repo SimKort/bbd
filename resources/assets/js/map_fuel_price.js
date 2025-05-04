@@ -6,6 +6,11 @@ import "./map_trip_places";
 
 let fuelConsumption = 6, fuelPrices = {}, startCountryCode = null, fuelType = "gasoline", userFuelPrice = null, totalFuelCost = 0, fuelModalWasConfirmed = false;
 
+export function setFuelModalWasConfirmed(value) {
+    fuelModalWasConfirmed = value;
+}
+window.setFuelModalWasConfirmed = setFuelModalWasConfirmed;
+
 // Užkrauname degalų kainas iš JSON failo
 fetch('/data/fuel_prices.json')
     .then(response => response.json())

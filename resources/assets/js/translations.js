@@ -140,6 +140,8 @@ export const translations = {
         save_trip_plan_input_error: "Įveskite kelionės pavadinimą.",
         save_trip_plan_confirm: "Išsaugoti",
         save_trip_plan_cancel: "Atšaukti",
+        update_trip_plan: "Išsaugoti atnaujintą kelionės planą",
+        cancel_update_trip_plan: "Atšaukti kelionės plano redagavimą",
         /*------------------------------------------------------------------------------------------------------------*/
         tittleTrips: "Mano kelionės",
         newRouteLink: "➕ naujas kelionės planas ➕",
@@ -309,6 +311,8 @@ export const translations = {
         save_trip_plan_input_error: "Please enter the name.",
         save_trip_plan_confirm: "Save",
         save_trip_plan_cancel: "Cancel",
+        update_trip_plan: "Save updated trip plan",
+        cancel_update_trip_plan: "Cancel trip plan editing",
         /*------------------------------------------------------------------------------------------------------------*/
         tittleTrips: "My trips",
         newRouteLink: "➕ new trip plan ➕",

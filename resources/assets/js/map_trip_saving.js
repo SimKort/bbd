@@ -41,6 +41,7 @@ function continueSaveTrip(title, start, end) {
         const price = parseFloat(item.dataset.price || 0);
         const lat = parseFloat(item.dataset.lat);
         const lng = parseFloat(item.dataset.lng);
+        const website = item.dataset.website || '';
         if (placeId && name && address && !isNaN(lat) && !isNaN(lng)) {
             places.push({
                 place_id: placeId,
@@ -50,7 +51,8 @@ function continueSaveTrip(title, start, end) {
                 price,
                 order: index + 1,
                 lat,
-                lng
+                lng,
+                website
             });
         }
     });

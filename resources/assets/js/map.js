@@ -1,5 +1,9 @@
 import { currentLanguage } from './toolbar_language_map';
 import { translations } from './translations';
+import { addedWaypoints, calculateRoute, getEndMarker, getStartMarker } from './map_route_creation';
+import {getCurrentEndName, getCurrentStartName, renderTripPlan} from "./map_trip_places";
+import { getFuelData } from './map_fuel_price';
+import {updateTotalPlaceCost} from "./map_price_popup";
 import './map_route_search';
 import './map_search_filter';
 import './map_route_creation';
@@ -144,6 +148,10 @@ export function updateTexts() {
     if (saveTripPlanBtnConfirm) { saveTripPlanBtnConfirm.textContent = t.save_trip_plan_confirm; }
     const saveTripPlanBtnCancel = document.getElementById("cancel-trip-title");
     if (saveTripPlanBtnCancel) { saveTripPlanBtnCancel.textContent = t.save_trip_plan_cancel; }
+    const updateTripPlanBtn = document.getElementById("updateTripPlanBtn");
+    if (updateTripPlanBtn) { updateTripPlanBtn.textContent = t.update_trip_plan; }
+    const cancelUpdateTripPlanBtn = document.getElementById("cancelUpdateTripPlanBtn");
+    if (cancelUpdateTripPlanBtn) { cancelUpdateTripPlanBtn.textContent = t.cancel_update_trip_plan; }
     renderTripPlan();
 }
 
@@ -169,20 +177,19 @@ export function loadGoogleMapsApi(onLoadCallback = null) {
 window.loadGoogleMapsApi = loadGoogleMapsApi;
 
 // Įkeliamas Google Maps API ir atkuriami ankstesni naudotojo įvesti duomenys iš localStorage
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
     loadGoogleMapsApi(() => {
         updateTexts();
         reinitializeAutocompletes();
-        document.getElementById('start').value = localStorage.getItem('startLocation') || '';
-        document.getElementById('end').value = localStorage.getItem('endLocation') || '';
-        document.getElementById('mode').value = localStorage.getItem('travelMode') || 'DRIVING';
-        document.getElementById('radius-input').value = localStorage.getItem('radius') || 1000;
-        document.getElementById('custom-place').value = localStorage.getItem('customPlace') || '';
+        if (!window.tripData) {
+            document.getElementById('start').value = localStorage.getItem('startLocation') || '';
+            document.getElementById('end').value = localStorage.getItem('endLocation') || '';
+            document.getElementById('mode').value = localStorage.getItem('travelMode') || 'DRIVING';
+        }
+        if (window.tripData) { preloadTrip(window.tripData); }
         localStorage.removeItem('startLocation');
         localStorage.removeItem('endLocation');
         localStorage.removeItem('travelMode');
-        localStorage.removeItem('radius');
-        localStorage.removeItem('customPlace');
     });
 });
 
@@ -209,8 +216,171 @@ function initMap() {
     directionsRenderer.setMap(map);
     placesService = new google.maps.places.PlacesService(map);
     infoWindow = new google.maps.InfoWindow();
-    startAutocomplete = new google.maps.places.Autocomplete(document.getElementById('start'));
-    endAutocomplete = new google.maps.places.Autocomplete(document.getElementById('end'));
-    customAutocomplete = new google.maps.places.Autocomplete(document.getElementById('custom-place'));
 }
 window.initMap = initMap;
+
+// Duomenų užkrovimo norimos kelionės atnaujinimui funkcija
+function preloadTrip(trip) {
+    if (!trip) { return; }
+    const startInput = document.getElementById('start');
+    const endInput = document.getElementById('end');
+    if (startInput) startInput.value = trip.start_address || '';
+    if (endInput) endInput.value = trip.end_address || '';
+    const modeSelect = document.getElementById('mode');
+    if (modeSelect && trip.mode) { modeSelect.value = trip.mode.toUpperCase(); }
+    setTimeout(() => {
+        calculateRoute();
+    }, 300);
+    if (trip.fuel_consumption) { document.getElementById("fuel-input").value = trip.fuel_consumption; }
+    if (trip.fuel_price) {
+        document.getElementById("fuel-price-input").value = trip.fuel_price;
+        document.querySelector('input[name="fuel-input"][value="custom"]').checked = true;
+        document.getElementById("custom-price-wrapper").style.display = "block";
+    }
+    if (trip.fuel_type) {
+        const radio = document.querySelector(`input[name="fuel-type"][value="${trip.fuel_type}"]`);
+        if (radio) radio.checked = true;
+    }
+    if (trip.fuel_consumption) {
+        setTimeout(() => {
+            const confirmFuelButton = document.getElementById("confirm-fuel");
+            if (confirmFuelButton && typeof confirmFuelButton.onclick === 'function') { confirmFuelButton.onclick(); }
+        }, 1800);
+    }
+    else{
+        setTimeout(() => {
+            const fuelModal = document.getElementById("fuel-cost-modal");
+            if (fuelModal) { fuelModal.style.display = "none"; }
+        }, 2000);
+    }
+    trip.places.forEach(place => {
+        const lat = parseFloat(place.lat);
+        const lng = parseFloat(place.lng);
+        if (isNaN(lat) || isNaN(lng)) {
+            console.warn('Netinkamos koordinatės:', place);
+            return;
+        }
+        const marker = new google.maps.Marker({
+            position: { lat, lng },
+            map: map,
+            title: place.name,
+            icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/yellow.png'
+        });
+        marker.addListener('click', () => {
+            showInfoWindow(place, marker);
+        });
+        if (!place.website && place.place_id) {
+            placesService.getDetails({
+                placeId: place.place_id,
+                fields: ['website'],
+                language: currentLanguage
+            }, (details, status) => {
+                if (status === google.maps.places.PlacesServiceStatus.OK && details?.website) { place.website = details.website; }
+            });
+        }
+        addedWaypoints.push({
+            ...place,
+            location: { lat, lng },
+            marker: marker,
+            price: parseFloat(place.price) || 0,
+        });
+        updateTotalPlaceCost();
+    });
+    setTimeout(() => {
+        calculateRoute();
+    }, 2100);
+    const fuelBtn = document.getElementById("fuel-cost-button");
+    if (trip.mode === "WALKING" && fuelBtn) { fuelBtn.style.display = "none"; }
+    else if (fuelBtn) { fuelBtn.style.display = "inline-block"; }
+}
+window.preloadTrip = preloadTrip;
+
+// Atnaujintos kelionės išsaugojimo funkcija
+function saveUpdatedTrip() {
+    if (!window.tripData?.id) {
+        alert("Trūksta kelionės ID.");
+        return;
+    }
+    const title = window.tripData.title;
+    const startMarker = getStartMarker();
+    const endMarker = getEndMarker();
+    const startLat = startMarker?.getPosition()?.lat();
+    const startLng = startMarker?.getPosition()?.lng();
+    const endLat = endMarker?.getPosition()?.lat();
+    const endLng = endMarker?.getPosition()?.lng();
+    const mode = document.getElementById("mode").value || "DRIVING";
+    const distanceText = document.getElementById('distance-bottom')?.innerText.replace(' km', '') || '0';
+    const durationText = document.getElementById('duration-bottom')?.innerText.replace(' min', '') || '0';
+    const costText = document.getElementById('total-place-cost-bottom')?.innerText.replace('€', '').trim() || '0';
+    const tripItems = document.querySelectorAll('#trip-plan-list li[data-place-id]');
+    const places = [];
+    tripItems.forEach((item, index) => {
+        const placeId = item.dataset.placeId;
+        const name = item.querySelector('.trip-place-name')?.innerText.replace(/💶/g, '').trim() || '';
+        const type = item.dataset.type || 'tourist_attraction';
+        const address = item.querySelector('.trip-place-address')?.innerText || '';
+        const price = parseFloat(item.dataset.price || 0);
+        const lat = parseFloat(item.dataset.lat);
+        const lng = parseFloat(item.dataset.lng);
+        const website = item.dataset.website || '';
+        if (placeId && name && address && !isNaN(lat) && !isNaN(lng)) {
+            places.push({
+                place_id: placeId,
+                name,
+                type,
+                address,
+                price,
+                order: index + 1,
+                lat,
+                lng,
+                website
+            });
+        }
+    });
+    const fuelData = getFuelData();
+    if (mode === "WALKING") {
+        fuelData.fuel_type = null;
+        fuelData.fuel_price = null;
+        fuelData.fuel_consumption = null;
+    }
+    const payload = {
+        title,
+        start_name: getCurrentStartName(),
+        start_address: document.getElementById("start").value,
+        start_lat: startLat,
+        start_lng: startLng,
+        end_name: getCurrentEndName(),
+        end_address: document.getElementById("end").value,
+        end_lat: endLat,
+        end_lng: endLng,
+        distance: parseFloat(distanceText),
+        duration: parseInt(durationText),
+        price_total: parseFloat(costText),
+        mode: mode,
+        fuel_type: fuelData.fuel_type,
+        fuel_price: isNaN(fuelData.fuel_price) ? null : fuelData.fuel_price,
+        fuel_consumption: isNaN(fuelData.fuel_consumption) ? null : fuelData.fuel_consumption,
+        places,
+    };
+    fetch(`/trips/${window.tripData.id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+        },
+        body: JSON.stringify(payload),
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = '/trips';
+            } else {
+                alert("Serverio klaida: " + (data.error || "Nežinoma"));
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert("Klaida siunčiant duomenis.");
+        });
+}
+window.saveUpdatedTrip = saveUpdatedTrip;

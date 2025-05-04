@@ -5,6 +5,10 @@ import { suggestedPlaces } from "./map_find_attractions";
 import { renderTripPlan } from "./map_trip_places";
 import { updateTotalCombinedCost } from './map_fuel_price';
 
+
+import { getSortedWaypointsByLastRouteOrder } from "./map_route_creation";
+
+
 export let totalObjectCost = 0;
 let currentPricePopup = null;
 
@@ -39,7 +43,7 @@ function createPricePopup(place) {
         <p>${t.priceInfoText}</p>
         <p><a href="${place.website}" target="_blank">${t.priceWebsiteLink}</a></p>
         <label>${t.priceInputLabel}</label>
-        <input type="number" min="0" step="0.1" value="${place.cost || ''}">
+        <input type="number" min="0" step="0.1" value="${place.cost ?? place.price ?? ''}">
         <div class="popup-actions">
             <button>${t.save}</button>
         </div>`;
@@ -56,7 +60,7 @@ function attachPricePopupEvents(popup, place) {
         place.cost = newCost;
         place.price = newCost;
         updateTotalPlaceCost();
-        renderTripPlan();
+        renderTripPlan(getSortedWaypointsByLastRouteOrder());
         removeCurrentPricePopup();
     };
     closeButton.onclick = removeCurrentPricePopup;
@@ -93,8 +97,8 @@ window.updatePlaceCost = updatePlaceCost;
 
 // Visos kelionės kainos atnaujinimo funkcija
 export function updateTotalPlaceCost() {
-    const totalSuggested = suggestedPlaces.reduce((sum, p) => sum + (p.cost || 0), 0);
-    const totalAdded = addedWaypoints.reduce((sum, p) => sum + (p.cost || 0), 0);
+    const totalSuggested = suggestedPlaces.reduce((sum, p) => sum + (p.cost ?? p.price ?? 0), 0);
+    const totalAdded = addedWaypoints.reduce((sum, p) => sum + (p.cost ?? p.price ?? 0), 0);
     totalObjectCost = totalSuggested + totalAdded;
     updateTotalCombinedCost();
 }

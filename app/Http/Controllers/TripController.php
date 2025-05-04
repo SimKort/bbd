@@ -37,6 +37,7 @@ class TripController extends Controller
                 'places.*.order' => 'nullable|integer',
                 'places.*.lat' => 'required|numeric',
                 'places.*.lng' => 'required|numeric',
+                'places.*.website' => 'nullable|string',
                 'mode' => 'required|in:DRIVING,WALKING',
                 'fuel_type' => 'nullable|string|in:gasoline,diesel,electric',
                 'fuel_price' => 'nullable|numeric',
@@ -119,5 +120,94 @@ class TripController extends Controller
         $trip = Trip::where('user_id', auth()->id())->findOrFail($id);
         $trip->delete();
         return redirect()->route('trips.index')->with('success', true);
+    }
+
+    public function showMap(Request $request)
+    {
+        $trip = null;
+        if ($request->has('trip_id')) {
+            $tripModel = Trip::with('places')->find($request->input('trip_id'));
+            if ($tripModel) {
+                $trip = [
+                    'id' => $tripModel->id,
+                    'title' => $tripModel->title,
+                    'start_address' => $tripModel->start_address,
+                    'end_address' => $tripModel->end_address,
+                    'mode' => $tripModel->mode,
+                    'fuel_type' => $tripModel->fuel_type,
+                    'fuel_price' => $tripModel->fuel_price,
+                    'fuel_consumption' => $tripModel->fuel_consumption,
+                    'country_code' => $tripModel->country_code,
+                    'places' => $tripModel->places->map(function ($place) {
+                        return [
+                            'place_id' => $place->place_id,
+                            'name' => $place->name,
+                            'lat' => $place->lat,
+                            'lng' => $place->lng,
+                            'address' => $place->address,
+                            'type' => $place->type,
+                            'price' => $place->price,
+                            'website' => $place->website,
+                        ];
+                    })->values()->all()
+                ];
+            }
+        }
+        return view('map', [
+            'trip' => $trip,
+        ]);
+    }
+
+    public function updatePlaceWebsite(Request $request, $place_id)
+    {
+        $request->validate([
+            'website' => 'nullable|string|max:255',
+        ]);
+        $place = TripPlace::where('place_id', $place_id)->first();
+        if (!$place) {
+            return response()->json(['error' => 'Place not found'], 404);
+        }
+        $place->website = $request->input('website');
+        $place->save();
+        return response()->json(['success' => true]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $trip = Trip::with('places')->where('user_id', auth()->id())->findOrFail($id);
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'start_name' => 'nullable|string|max:255',
+            'start_address' => 'required|string',
+            'start_lat' => 'required|numeric',
+            'start_lng' => 'required|numeric',
+            'end_name' => 'nullable|string|max:255',
+            'end_address' => 'required|string',
+            'end_lat' => 'required|numeric',
+            'end_lng' => 'required|numeric',
+            'distance' => 'nullable|numeric',
+            'duration' => 'nullable|integer',
+            'price_total' => 'nullable|numeric',
+            'places' => 'required|array',
+            'places.*.place_id' => 'required|string',
+            'places.*.name' => 'required|string',
+            'places.*.type' => 'nullable|string|max:50',
+            'places.*.address' => 'required|string',
+            'places.*.price' => 'nullable|numeric',
+            'places.*.order' => 'nullable|integer',
+            'places.*.lat' => 'required|numeric',
+            'places.*.lng' => 'required|numeric',
+            'places.*.website' => 'nullable|string',
+            'mode' => 'required|in:DRIVING,WALKING',
+            'fuel_type' => 'nullable|string|in:gasoline,diesel,electric',
+            'fuel_price' => 'nullable|numeric',
+            'fuel_consumption' => 'nullable|numeric',
+        ]);
+        $trip->update($validated);
+        $trip->places()->delete();
+        foreach ($validated['places'] as $place) {
+            $trip->places()->create($place);
+        }
+        return response()->json(['success' => true]);
     }
 }
