@@ -42,7 +42,13 @@
 
                     <div class="trip-stats-row">
                         <div class="myTripsDistance"><strong>Maršruto atstumas:</strong> {{ $trip->distance }} km</div>
-                        <div class="myTripsTravelTime"><strong>Maršruto kelionės trukmė:</strong> {{ $trip->duration }} min</div>
+
+
+
+                        <div class="myTripsTravelTime" data-minutes="{{ $trip->duration }}"></div>
+
+
+
                         <div class="myTripsPrice"><strong>Apytikslė bendra kaina:</strong> {{ $trip->price_total }} €</div>
                     </div>
 

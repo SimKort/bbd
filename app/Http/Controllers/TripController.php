@@ -14,68 +14,57 @@ class TripController extends Controller
 {
     public function store(Request $request)
     {
-        try {
-            $validated = $request->validate([
-                'title' => 'required|string|max:255',
-                'start_name' => 'nullable|string|max:255',
-                'start_address' => 'required|string',
-                'start_lat' => 'required|numeric',
-                'start_lng' => 'required|numeric',
-                'end_name' => 'nullable|string|max:255',
-                'end_address' => 'required|string',
-                'end_lat' => 'required|numeric',
-                'end_lng' => 'required|numeric',
-                'distance' => 'nullable|numeric',
-                'duration' => 'nullable|integer',
-                'price_total' => 'nullable|numeric',
-                'places' => 'required|array',
-                'places.*.place_id' => 'required|string',
-                'places.*.name' => 'required|string',
-                'places.*.type' => 'nullable|string|max:50',
-                'places.*.address' => 'required|string',
-                'places.*.price' => 'nullable|numeric',
-                'places.*.order' => 'nullable|integer',
-                'places.*.lat' => 'required|numeric',
-                'places.*.lng' => 'required|numeric',
-                'places.*.website' => 'nullable|string',
-                'mode' => 'required|in:DRIVING,WALKING',
-                'fuel_type' => 'nullable|string|in:gasoline,diesel,electric',
-                'fuel_price' => 'nullable|numeric',
-                'fuel_consumption' => 'nullable|numeric',
-            ]);
-
-            $trip = Trip::create([
-                'user_id' => Auth::id(),
-                'title' => $validated['title'],
-                'start_name' => $validated['start_name'],
-                'start_address' => $validated['start_address'],
-                'start_lat' => $validated['start_lat'],
-                'start_lng' => $validated['start_lng'],
-                'end_name' => $validated['end_name'],
-                'end_address' => $validated['end_address'],
-                'end_lat' => $validated['end_lat'],
-                'end_lng' => $validated['end_lng'],
-                'distance' => $validated['distance'],
-                'duration' => $validated['duration'],
-                'price_total' => $validated['price_total'],
-                'mode' => $validated['mode'],
-                'fuel_type' => $validated['fuel_type'] ?? null,
-                'fuel_price' => $validated['fuel_price'] ?? null,
-                'fuel_consumption' => $validated['fuel_consumption'] ?? null,
-            ]);
-
-            foreach ($validated['places'] as $place) {
-                $trip->places()->create($place);
-            }
-
-            return response()->json(['success' => true, 'trip_id' => $trip->id]);
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'start_name' => 'nullable|string|max:255',
+            'start_address' => 'required|string',
+            'start_lat' => 'required|numeric',
+            'start_lng' => 'required|numeric',
+            'end_name' => 'nullable|string|max:255',
+            'end_address' => 'required|string',
+            'end_lat' => 'required|numeric',
+            'end_lng' => 'required|numeric',
+            'distance' => 'nullable|numeric',
+            'duration' => 'nullable|integer',
+            'price_total' => 'nullable|numeric',
+            'places' => 'required|array',
+            'places.*.place_id' => 'required|string',
+            'places.*.name' => 'required|string',
+            'places.*.type' => 'nullable|string|max:50',
+            'places.*.address' => 'required|string',
+            'places.*.price' => 'nullable|numeric',
+            'places.*.order' => 'nullable|integer',
+            'places.*.lat' => 'required|numeric',
+            'places.*.lng' => 'required|numeric',
+            'places.*.website' => 'nullable|string',
+            'mode' => 'required|in:DRIVING,WALKING',
+            'fuel_type' => 'nullable|string|in:gasoline,diesel,electric',
+            'fuel_price' => 'nullable|numeric',
+            'fuel_consumption' => 'nullable|numeric',
+        ]);
+        $trip = Trip::create([
+            'user_id' => Auth::id(),
+            'title' => $validated['title'],
+            'start_name' => $validated['start_name'],
+            'start_address' => $validated['start_address'],
+            'start_lat' => $validated['start_lat'],
+            'start_lng' => $validated['start_lng'],
+            'end_name' => $validated['end_name'],
+            'end_address' => $validated['end_address'],
+            'end_lat' => $validated['end_lat'],
+            'end_lng' => $validated['end_lng'],
+            'distance' => $validated['distance'] ?? null,
+            'duration' => $validated['duration'] ?? null,
+            'price_total' => $validated['price_total'] ?? null,
+            'mode' => $validated['mode'],
+            'fuel_type' => $validated['fuel_type'] ?? null,
+            'fuel_price' => $validated['fuel_price'] ?? null,
+            'fuel_consumption' => $validated['fuel_consumption'] ?? null,
+        ]);
+        foreach ($validated['places'] as $place) {
+            $trip->places()->create($place);
         }
-        catch (\Throwable $e) {
-            return response()->json([
-                'success' => false,
-                'error' => $e->getMessage(),
-            ], 500);
-        }
+        return response()->json(['success' => true, 'trip_id' => $trip->id]);
     }
 
     public function index()
@@ -162,12 +151,12 @@ class TripController extends Controller
     {
         $request->validate([
             'website' => 'nullable|string|max:255',
+            'price' => 'nullable|numeric|min:0',
         ]);
         $place = TripPlace::where('place_id', $place_id)->first();
-        if (!$place) {
-            return response()->json(['error' => 'Place not found'], 404);
-        }
+        if (!$place) { return response()->json(['error' => 'Place not found'], 404); }
         $place->website = $request->input('website');
+        $place->price = $request->input('price');
         $place->save();
         return response()->json(['success' => true]);
     }
@@ -199,7 +188,7 @@ class TripController extends Controller
             'places.*.lng' => 'required|numeric',
             'places.*.website' => 'nullable|string',
             'mode' => 'required|in:DRIVING,WALKING',
-            'fuel_type' => 'nullable|string|in:gasoline,diesel,electric',
+            'fuel_type' => 'nullable|string|in:gasoline,diesel',
             'fuel_price' => 'nullable|numeric',
             'fuel_consumption' => 'nullable|numeric',
         ]);
@@ -209,5 +198,25 @@ class TripController extends Controller
             $trip->places()->create($place);
         }
         return response()->json(['success' => true]);
+    }
+
+    public function updateFuel(Request $request, Trip $trip)
+    {
+        $validated = $request->validate([
+            'fuel_consumption' => 'required|numeric|min:0.1|max:50',
+            'fuel_price' => 'required|numeric|min:0.1|max:10',
+            'fuel_type' => 'required|in:gasoline,diesel',
+        ]);
+        $trip->update($validated);
+        return redirect()->back();
+    }
+
+    public function getFilteredPlaces(Request $request, Trip $trip)
+    {
+        $types = $request->input('types', []);
+        $places = $trip->places()
+            ->when(!empty($types), fn($q) => $q->whereIn('type', $types))
+            ->get();
+        return response()->json($places);
     }
 }

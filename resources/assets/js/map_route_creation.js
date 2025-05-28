@@ -177,7 +177,12 @@ function calculateAndDisplayRouteSummary(response) {
         return acc;
     }, { distance: 0, duration: 0 });
     const distanceKm = (route.distance / 1000).toFixed(1) + " km";
-    const durationMin = Math.round(route.duration / 60) + " min";
+
+
+    //const durationMin = Math.round(route.duration / 60) + " min";
+    const durationMin = formatDuration(Math.round(route.duration / 60));
+
+
     document.getElementById("distance").textContent = distanceKm;
     document.getElementById("duration").textContent = durationMin;
     document.getElementById("distance-bottom").textContent = distanceKm;
@@ -201,4 +206,16 @@ function fitMapToRouteBounds(response) {
 // Lankytinų vietų elemento atvaizdavimo funkcija
 function showPlacesSection() {
     document.getElementById("places-section").style.display = "block";
+}
+
+
+
+
+export function formatDuration(minutes) {
+    minutes = parseInt(minutes);
+    if (isNaN(minutes)) return '';
+    if (minutes < 60) return `${minutes} min`;
+    const h = Math.floor(minutes / 60);
+    const m = minutes % 60;
+    return m === 0 ? `${h} h` : `${h} h ${m} min`;
 }

@@ -49,6 +49,12 @@ export function updateTexts() {
     if (myTripsModalConfirm) { myTripsModalConfirm.textContent = t.delete_modal_confirm; }
     const myTripsModalCancel = document.getElementById("cancel-trip-title");
     if (myTripsModalCancel) { myTripsModalCancel.textContent = t.delete_modal_cancel; }
+    document.querySelectorAll(".myTripsTravelTime").forEach(div => {
+        const minutes = parseInt(div.dataset.minutes); // ← čia turi būti skaičius iš HTML
+        const formatted = formatDuration(minutes, lang);
+        div.innerHTML = `<strong>${t.my_trips_travel_time}</strong> ${formatted}`;
+    });
+
 }
 
 // Ištrynimo modal atidarymo funkcija
@@ -63,3 +69,21 @@ window.openDeleteModal = openDeleteModal;
 document.getElementById('cancel-trip-title').addEventListener('click', function () {
     document.getElementById('delete-modal').style.display = 'none';
 });
+
+
+
+function formatDuration(minutes, lang = 'lt') {
+    minutes = parseInt(minutes);
+    if (isNaN(minutes)) return '';
+    const h = Math.floor(minutes / 60);
+    const m = minutes % 60;
+    if (lang === 'lt') {
+        return h > 0 ? `${h} val.${m > 0 ? ' ' + m + ' min' : ''}` : `${m} min`;
+    } else {
+        return h > 0 ? `${h} h${m > 0 ? ' ' + m + ' min' : ''}` : `${m} min`;
+    }
+}
+
+
+
+

@@ -13,10 +13,10 @@
 </head>
 
 @php
-    use Carbon\CarbonInterval;
+    /*use Carbon\CarbonInterval;
     $durationFormatted = $trip->duration >= 60
         ? CarbonInterval::minutes($trip->duration)->cascade()->forHumans(['short' => true, 'parts' => 2])
-        : $trip->duration . ' min';
+        : $trip->duration . ' min';*/
 @endphp
 
 <body>
@@ -120,7 +120,17 @@
 
                 <div class="compact-info" id="map-info">
                     <span id="savedTripDistance"><strong>Atstumas:</strong> {{ $trip->distance }} km</span> |
-                    <span id="savedTripTime"><strong>Numatoma trukmė:</strong> {{ $durationFormatted }}</span>|
+
+
+
+
+                    <span id="savedTripTime">
+  <strong>Numatoma trukmė:</strong>
+  <span id="trip-duration" data-minutes="{{ $trip->duration }}"></span>
+</span>
+
+
+
                     <span id="savedTripPrice"><strong>Numatoma kaina:</strong> {{ $trip->price_total }} €</span>
                 </div>
             </div>

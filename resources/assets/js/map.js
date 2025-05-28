@@ -316,7 +316,8 @@ function saveUpdatedTrip() {
     const endLng = endMarker?.getPosition()?.lng();
     const mode = document.getElementById("mode").value || "DRIVING";
     const distanceText = document.getElementById('distance-bottom')?.innerText.replace(' km', '') || '0';
-    const durationText = document.getElementById('duration-bottom')?.innerText.replace(' min', '') || '0';
+    const rawDurationText = document.getElementById('duration-bottom')?.innerText || '';
+    const durationText = parseDurationToMinutes(rawDurationText);
     const costText = document.getElementById('total-place-cost-bottom')?.innerText.replace('€', '').trim() || '0';
     const tripItems = document.querySelectorAll('#trip-plan-list li[data-place-id]');
     const places = [];
@@ -390,3 +391,12 @@ function saveUpdatedTrip() {
         });
 }
 window.saveUpdatedTrip = saveUpdatedTrip;
+
+// Valandų ir minučių konvertavimo į minutes funkcija
+export function parseDurationToMinutes(text) {
+    const hMatch = text.match(/(\d+)\s*h/);
+    const mMatch = text.match(/(\d+)\s*min/);
+    const hours = hMatch ? parseInt(hMatch[1]) : 0;
+    const minutes = mMatch ? parseInt(mMatch[1]) : 0;
+    return hours * 60 + minutes;
+}

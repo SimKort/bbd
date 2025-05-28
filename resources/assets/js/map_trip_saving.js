@@ -4,6 +4,7 @@ import { getStartMarker, getEndMarker } from './map_route_creation';
 import { getCurrentStartName, getCurrentEndName } from './map_trip_places';
 import { getFuelData } from './map_fuel_price';
 import {currentLanguage} from "./toolbar_language_map";
+import {parseDurationToMinutes} from "./map";
 
 let pendingTripData = null;
 
@@ -29,7 +30,8 @@ function continueSaveTrip(title, start, end) {
     const endLng = endMarker?.getPosition()?.lng();
     const mode = document.getElementById("mode").value || "DRIVING";
     const distanceText = document.getElementById('distance-bottom')?.innerText.replace(' km', '') || '0';
-    const durationText = document.getElementById('duration-bottom')?.innerText.replace(' min', '') || '0';
+    const rawDurationText = document.getElementById('duration-bottom')?.innerText || '';
+    const durationText = parseDurationToMinutes(rawDurationText);
     const costText = document.getElementById('total-place-cost-bottom')?.innerText.replace('€', '').trim() || '0';
     const tripItems = document.querySelectorAll('#trip-plan-list li[data-place-id]');
     const places = [];

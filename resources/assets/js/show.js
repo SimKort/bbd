@@ -166,3 +166,31 @@ window.openDeleteModal = openDeleteModal;
 document.getElementById('cancel-trip-title').addEventListener('click', function () {
     document.getElementById('delete-modal').style.display = 'none';
 });
+
+
+
+function formatDuration(minutes, lang = 'lt') {
+    minutes = parseInt(minutes);
+    if (isNaN(minutes)) return '';
+    const h = Math.floor(minutes / 60);
+    const m = minutes % 60;
+
+    if (lang === 'lt') {
+        return h > 0 ? `${h} val.${m > 0 ? ' ' + m + ' min' : ''}` : `${m} min`;
+    } else {
+        return h > 0 ? `${h} h${m > 0 ? ' ' + m + ' min' : ''}` : `${m} min`;
+    }
+}
+
+
+
+window.addEventListener('DOMContentLoaded', () => {
+    const durationEl = document.getElementById('trip-duration');
+    if (durationEl && durationEl.dataset.minutes) {
+        const minutes = parseInt(durationEl.dataset.minutes);
+        const lang = localStorage.getItem('preferredLang') || 'lt';
+        durationEl.textContent = formatDuration(minutes, lang);
+    }
+});
+
+

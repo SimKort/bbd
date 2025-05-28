@@ -92,7 +92,15 @@ Route::delete('/trips/{id}', [TripController::class, 'destroy'])->name('trips.de
 Route::get('/map', [TripController::class, 'showMap'])->name('map');
 
 // Išsaugotos kelionės vietų svetainėms
-Route::post('/trip-places/{place_id}/update-website', [TripController::class, 'updatePlaceWebsite']);
+Route::post('/trip-places/{place_id}/update-website', [TripController::class, 'updatePlaceWebsite'])->name('trip-places.update');
 
 // Išsaugotos kelionės atnaujinimui
 Route::put('/trips/{id}', [TripController::class, 'update']);
+
+
+
+
+Route::post('/trips/{trip}/fuel', [TripController::class, 'updateFuel'])->name('trips.fuel.update');
+
+Route::middleware('auth')->get('/api/trips/{trip}/places', [TripController::class, 'getFilteredPlaces']);
+
