@@ -65,8 +65,8 @@ export function updateTexts() {
     if (customPlaceInput) {customPlaceInput.placeholder = t.addPlacePlaceholder;}
     const addCustomBtn = document.querySelector("button[onclick='addCustomPlace()']");
     if (addCustomBtn) {addCustomBtn.textContent = t.addCustom;}
-    const placesH3 = document.querySelector(".places h3");
-    if (placesH3) {placesH3.textContent = t.getPlaces;}
+    const suggested = document.getElementById("suggested-title");
+    if (suggested) {suggested.textContent = t.suggestedPlaces;}
     const placesH4 = document.querySelector(".places h4");
     if (placesH4) {placesH4.textContent = t.addCustom;}
     const mapInfo = document.getElementById("map-info");

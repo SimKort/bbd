@@ -12,7 +12,7 @@ class TravelModeSelectionTest extends DuskTestCase
     use DatabaseMigrations;
 
     /**
-     * TS-06: Kelionės pradžios ir tikslo taškų įvedimas ir maršruto generavimas
+     * TS-20: Keliavimo būdo (pvz., automobiliu / pėsčiomis) pasirinkimas ir pritaikymas
      */
     public function test_user_can_generate_route_between_two_points()
     {

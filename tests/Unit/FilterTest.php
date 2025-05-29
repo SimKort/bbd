@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\Trip;
 use App\Models\TripPlace;
 
-class SuggestedPlacesFilterTest extends TestCase
+class FilterTest extends TestCase
 {
     use RefreshDatabase;
     public function test_suggested_places_can_be_filtered_by_type()

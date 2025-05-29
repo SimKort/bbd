@@ -14,9 +14,9 @@ class TripDeleteTest extends DuskTestCase
     use DatabaseMigrations;
 
     /**
-     * TS-18: Išsaugotų maršrutų sąrašo peržiūra prisijungusiam naudotojui
+     * TS-19: Maršruto ištrynimas iš išsaugotų kelionių sąrašo
      */
-    public function test_user_can_view_saved_trips_list()
+    public function test_user_can_delete_saved_trips_list()
     {
         $user = User::factory()->create([
             'email' => 'perziura@example.com',
